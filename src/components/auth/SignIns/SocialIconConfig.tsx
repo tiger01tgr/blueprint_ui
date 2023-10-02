@@ -1,7 +1,14 @@
 import { FcGoogle } from 'react-icons/fc'
-import { SocialIcon } from "@/utils/types"
 import { auth } from '../../../config/firebase'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { IconType } from "react-icons"
+
+export interface SocialIcon {
+    id: string,
+    icon: IconType,
+    text: string,
+    signIn: () => void,
+}
 
 export const Google: SocialIcon = {
     id: "google",

@@ -1,5 +1,4 @@
 import styles from './SignInWithButton.module.css'
-import { SocialIcon } from '@/utils/types'
 
 export const SignInWithButton = ({ props }: any) => {
     return (

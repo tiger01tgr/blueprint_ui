@@ -1,6 +1,11 @@
 'use client'
 import styles from './LoginForm.module.css'
-import { SignInWithGoogle } from '../SignIns/SignInWithGoogle/SignInWithGoogle'
+import { Google, SocialIcon } from '../SignIns/SocialIconConfig'
+import { SignInWithButton } from '../SignIns/SignInWithButton'
+
+const buttons: SocialIcon[] = [
+    Google
+]
 
 const LoginForm = () => {
     return (
@@ -35,7 +40,9 @@ const LoginForm = () => {
                 Register
             </button>
             <div className={styles.iconButtonSection}>
-                <SignInWithGoogle />
+                {buttons.map((social) => (
+                    <SignInWithButton key={social.id} props={social} />
+                ))}
             </div>
         </div>
     )
