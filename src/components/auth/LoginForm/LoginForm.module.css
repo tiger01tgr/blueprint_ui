@@ -1,0 +1,71 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nameSection {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.inputText {
+    color: #001514;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.shortInput {
+    border: 1px solid rgba(0, 21, 20, 0.1);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+}
+
+.longInput {
+    border: 1px solid rgba(0, 21, 20, 0.1);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+}
+
+.registerButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #02C39A;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.iconButtonSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
