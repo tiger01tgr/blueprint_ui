@@ -1,0 +1,51 @@
+.liner {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px 40px 20px 40px;
+}
+
+.header {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.linkSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+.link {
+    color: #02C39A;
+    font-weight: 600;
+}
+
+.signUpSection {
+    display: flex;
+    flex-direction: row;
+}
+
+.signUpButton {
+    border: 2px solid #02C39A;
+    height: 50px;
+    width: 90px;
+    border-radius: 5px;
+    color: #02C39A;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-weight: 400;
+}
+
+.signUpButton:hover {
+    border: 2px solid #02C39A;
+    background-color: #02C39A;
+    height: 50px;
+    width: 90px;
+    border-radius: 5px;
+    color: #E9F1F7;
+    font-weight: 400;
+}
