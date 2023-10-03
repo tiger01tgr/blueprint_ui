@@ -10,14 +10,27 @@
     position: relative;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+}
+
+.nonSignUpSection {
+    display: flex;
+}
+
+.homeSection {
+    display: flex;
+    margin-right: 50px;
+    position: relative;
+    top: -5px;
 }
 
 .linkSection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 70px;
+    align-items: center;
+    gap: 50px;
 }
 
 .link {

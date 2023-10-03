@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div className={styles.liner}>
       <div className={styles.title}>
-        welcome to levelmeup
+        Mock Interviews with AI
       </div>
     </div>
   )
