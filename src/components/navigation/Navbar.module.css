@@ -21,7 +21,7 @@
 }
 
 .link {
-    color: #02C39A;
+    color: var(--blue);
     font-weight: 600;
 }
 
@@ -31,21 +31,21 @@
 }
 
 .signUpButton {
-    border: 2px solid #02C39A;
+    border: 2px solid var(--blue);
     height: 50px;
     width: 90px;
     border-radius: 5px;
-    color: #02C39A;
+    color: var(--sapphire);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     font-weight: 400;
 }
 
 .signUpButton:hover {
-    border: 2px solid #02C39A;
-    background-color: #02C39A;
+    border: 2px solid var(--blue);
+    background-color: var(--blue);
     height: 50px;
     width: 90px;
     border-radius: 5px;
-    color: #E9F1F7;
+    color: var(--white);
     font-weight: 400;
 }

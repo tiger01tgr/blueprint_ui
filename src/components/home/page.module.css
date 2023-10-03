@@ -5,5 +5,5 @@
 }
 
 .title {
-    color: #001514;
+    color: var(--black);
 }
