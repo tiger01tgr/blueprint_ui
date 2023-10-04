@@ -35,6 +35,7 @@
     font-size: 15px;
     height: 40px;
     width: 100%;
+    outline: none;
 }
 
 .longInput {
@@ -44,6 +45,7 @@
     font-size: 15px;
     height: 40px;
     width: 100%;
+    outline: none;
 }
 
 .registerButton {
