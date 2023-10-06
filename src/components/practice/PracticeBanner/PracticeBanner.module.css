@@ -5,6 +5,11 @@
     background-color: var(--sapphire80);
     height: 160px;
     padding: 20px 100px 20px 100px;
+
+    @media (max-width: 540px) {
+        padding: 15px 15px 15px 15px;
+        height: 260px;
+    }
 }
 
 .title {
@@ -16,5 +21,6 @@
 .filterSection {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 15px;
 }
