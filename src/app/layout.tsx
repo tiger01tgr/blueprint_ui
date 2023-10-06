@@ -3,12 +3,13 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from './provider'
 import Navbar from '@/components/navigation/Navbar'
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Level Me Up',
-  description: 'yo',
+  title: 'blueprint',
+  description: 'Accelerating Your Job Search',
 }
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='light'>
+      <link rel="icon" href="/public/favicon.ico" type="image/x-icon" />
       <body className={inter.className}>
         <Providers>
           <Navbar />

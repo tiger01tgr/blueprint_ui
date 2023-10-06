@@ -1,12 +1,12 @@
 // app/providers.tsx
 'use client'
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
-import {NextUIProvider} from '@nextui-org/react'
-
-export function Providers({children}: { children: React.ReactNode }) {
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <NextUIProvider>
+    <MantineProvider>
       {children}
-    </NextUIProvider>
+    </MantineProvider>
   )
 }
