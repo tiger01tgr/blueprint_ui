@@ -1,0 +1,20 @@
+.input {
+    border-radius: 5px;
+    background: white;
+    max-width: 200px;
+}
+
+.dropdown {
+    max-height: 200px;
+}
+
+.options {
+    max-height: 180px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.label {
+    color: var(--white);
+    font-weight: 500;
+}
