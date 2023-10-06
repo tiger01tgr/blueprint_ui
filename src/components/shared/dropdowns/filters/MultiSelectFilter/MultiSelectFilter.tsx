@@ -28,6 +28,7 @@ const MultiSelectFilter = (props: MultiSelectFilterSettings) => {
       data={props.options}
       onChange={setValue}
       variant="standard"
+      clearable={true}
     />
   )
 }
