@@ -1,19 +1,35 @@
 'use client'
-
+import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import styles from './Navbar.module.css'
 import Link from 'next/link'
 import Logo from '../../../public/logo.png'
+import NavMenu from './NavMenu/NavMenu'
 
 const links = [
     { name: 'Practice', path: '/practice' },
-    { name: 'Jobs', path: '/jobs' },
-    { name: 'Profile', path: '/profile' },
+    { name: 'Jobs Board', path: '/jobs' },
+    { name: 'Blog', path: '/blog' },
+    // { name: 'Profile', path: '/profile' },
     // { name: 'Employers', path: '/employers' }
 ]
 
 const Navbar = () => {
-    return (
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [buttonData, setButtonData] =  useState<any>({ name: 'Sign Up', link: 'login'})
+
+    useEffect(() => {
+        //check if logged in
+        // setLoggedIn(true)
+    })
+
+    useEffect(() => {
+        if (loggedIn) {
+            setButtonData({ name: 'Profile', link: 'profile'})
+        }
+    }, [loggedIn])
+
+    const renderNavBar = useCallback(() => (
         <div className={styles.liner}>
             <div className={styles.header}>
                 <div className={styles.nonSignUpSection}>
@@ -30,14 +46,23 @@ const Navbar = () => {
                         ))}
                     </div>
                 </div>
-                <div className={styles.signUpSection}>
-                    <Link key='Sign Up' href='/login'>
-                        <button className={styles.signUpButton}>
-                            Sign Up
+                <div className={styles.buttonSection}>
+                    <Link key='Sign Up' href={`/${buttonData.link}`}>
+                        <button className={styles.button}>
+                            {buttonData.name}
                         </button>
                     </Link>
                 </div>
+                <div className={styles.menu}>
+                    <NavMenu buttonData={buttonData} />
+                </div>
             </div>
+        </div>
+    ), [loggedIn, buttonData])
+
+    return  (
+        <div>
+            {renderNavBar()}
         </div>
     )
 }

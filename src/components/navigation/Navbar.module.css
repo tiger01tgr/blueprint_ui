@@ -3,6 +3,10 @@
     flex-direction: row;
     width: 100%;
     padding: 30px 60px 30px 60px;
+
+    @media (max-width: 540px) {
+        padding: 15px 0px 10px 20px;
+    }
 }
 
 .header {
@@ -31,6 +35,10 @@
     justify-content: space-between;
     align-items: center;
     gap: 50px;
+
+    @media (max-width: 540px) {
+        display: none;
+    }
 }
 
 .link {
@@ -38,22 +46,26 @@
     font-weight: 600;
 }
 
-.signUpSection {
+.buttonSection {
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 540px) {
+        display: none;
+    }
 }
 
-.signUpButton {
+.button {
     border: 2px solid var(--blue);
     height: 50px;
     width: 90px;
     border-radius: 5px;
-    color: var(--sapphire);
+    color: var(--blue);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     font-weight: 400;
 }
 
-.signUpButton:hover {
+.button:hover {
     border: 2px solid var(--blue);
     background-color: var(--blue);
     height: 50px;
@@ -61,4 +73,11 @@
     border-radius: 5px;
     color: var(--white);
     font-weight: 400;
+}
+
+.menu {
+
+    @media (min-width: 540px) {
+        display: none;
+    }
 }
