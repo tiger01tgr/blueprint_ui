@@ -9,7 +9,7 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-  --white: rgb(231, 241, 247);
+  --white: rgb(255, 255, 255);
   --black: rgb(0, 21, 20);
   --black50: rgba(0, 21, 20, 0.5);
   --sapphire: rgb(3, 83, 164);

@@ -9,7 +9,7 @@ const links = [
     { name: 'Practice', path: '/practice' },
     { name: 'Jobs', path: '/jobs' },
     { name: 'Profile', path: '/profile' },
-    { name: 'Employers', path: '/employers' }
+    // { name: 'Employers', path: '/employers' }
 ]
 
 const Navbar = () => {

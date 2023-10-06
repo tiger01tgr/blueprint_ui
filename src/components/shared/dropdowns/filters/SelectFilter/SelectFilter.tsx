@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Select } from '@mantine/core';
 import classes from './SelectFilter.module.css'
 
@@ -9,9 +9,14 @@ interface SelectFilterSettings {
 }
 
 const SelectFilter = (props: SelectFilterSettings) => {
+  const [filterValue, setFilterValue] = useState("")
+
+  useEffect(() => {
+    console.log(filterValue)
+  }, [filterValue])
 
   const handleChange = (value: string) => {
-    console.log(value)
+    setFilterValue(value)
   }
 
   return (
