@@ -32,14 +32,16 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
           <div className={styles.totalProgress}>
             Question {currentIndex + 1} of {questions.length}
           </div>
-          {currentQuestion.text}
+          <div className={styles.questionText}>
+            {currentQuestion.text}
+          </div>
         </div>
         <div className={styles.rightSection}>
         </div>
       </div>
       <div className={styles.buttonSection}>
-        <button onClick={handleNextQuestion}>
-          {isLastQuestion ? 'finish' : 'next question'}
+        <button onClick={handleNextQuestion} className={styles.nextButton}>
+          {isLastQuestion ? 'Finish' : 'Next Question'}
         </button>
       </div>
     </div>

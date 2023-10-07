@@ -1,15 +1,48 @@
 .liner {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    padding: 0px 40px 0px 40px;
+    height: 80vh;
 }
 
 .bodySection {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
+    height: 80%;
 }
 
 .leftSection {
     display: flex;
     flex-direction: column;
+    gap: 30px;
+}
+
+.totalProgress {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+.questionText {
+    display: flex;
+    width: 45%;
+}
+
+.buttonSection {
+    display: flex;
+    flex-direction: row;
+}
+
+.nextButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    color: var(--white);
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
 }
