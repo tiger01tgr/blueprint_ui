@@ -52,7 +52,7 @@
     outline: none;
 }
 
-.signInButton {
+.registerButton {
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -62,7 +62,7 @@
     border-radius: 5px;
     color: var(--blue);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .button:hover {

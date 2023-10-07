@@ -16,7 +16,7 @@ const links = [
 
 const Navbar = () => {
     const [loggedIn, setLoggedIn] = useState(false)
-    const [buttonData, setButtonData] =  useState<any>({ name: 'Sign Up', link: 'login'})
+    const [buttonData, setButtonData] =  useState<any>({ name: 'Sign Up', link: 'register'})
 
     useEffect(() => {
         //check if logged in
