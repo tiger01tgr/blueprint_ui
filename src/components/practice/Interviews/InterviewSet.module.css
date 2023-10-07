@@ -1,0 +1,15 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.bodySection {
+    display: flex;
+    flex-direction: row;
+}
+
+.leftSection {
+    display: flex;
+    flex-direction: column;
+}
