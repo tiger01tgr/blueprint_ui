@@ -11,11 +11,8 @@
     font-size: 16px;
     font-weight: 500;
     justify-content: center;
+    text-align: center;
     flex-wrap: wrap;
-}
-
-.title span {
-    margin-right: 4px;
 }
 
 .link {

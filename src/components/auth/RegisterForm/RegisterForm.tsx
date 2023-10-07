@@ -1,5 +1,6 @@
 'use client'
-import styles from './LoginForm.module.css'
+import Link from 'next/link'
+import styles from './RegisterForm.module.css'
 import { Google, SocialIcon } from '../SignIns/SocialIconConfig'
 import { SignInWithButton } from '../SignIns/SignInWithButton'
 
@@ -7,7 +8,7 @@ const buttons: SocialIcon[] = [
     Google
 ]
 
-const LoginForm = () => {
+const RegisterForm = () => {
     return (
         <div className={styles.liner}>
             <div className={styles.nameSection}>
@@ -39,6 +40,12 @@ const LoginForm = () => {
             <button className={styles.registerButton}>
                 Register
             </button>
+            <div className={styles.loginSection}>
+                <span>
+                    Already have an account? <Link href='/login' className={styles.loginLink}> Log in </Link>
+                    or register with Google below.
+                </span>
+            </div>
             <div className={styles.iconButtonSection}>
                 {buttons.map((social) => (
                     <SignInWithButton key={social.id} props={social} />
@@ -48,4 +55,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default RegisterForm
