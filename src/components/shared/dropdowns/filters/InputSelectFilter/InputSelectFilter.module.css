@@ -8,6 +8,16 @@
     }
 }
 
+.input {
+    max-height: 60px;
+    overflow-y: scroll;
+}
+
+.label {
+    color: var(--white);
+    font-weight: 500;
+}
+
 .dropdown {
     max-height: 200px;
 }
@@ -15,9 +25,5 @@
 .options {
     max-height: 180px;
     overflow-y: scroll;
-}
-
-.label {
-    color: var(--white);
-    font-weight: 500;
+    overflow-x: hidden;
 }

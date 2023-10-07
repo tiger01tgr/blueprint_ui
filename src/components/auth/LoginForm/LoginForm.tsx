@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import styles from './RegisterForm.module.css'
+import styles from './LoginForm.module.css'
 import { Google, SocialIcon } from '../SignIns/SocialIconConfig'
 import { SignInWithButton } from '../SignIns/SignInWithButton'
 
@@ -8,23 +8,9 @@ const buttons: SocialIcon[] = [
     Google
 ]
 
-const RegisterForm = () => {
+const LoginForm = () => {
     return (
         <div className={styles.liner}>
-            <div className={styles.nameSection}>
-                <div className={styles.input}>
-                    <div className={styles.inputText}>
-                        First Name
-                    </div>
-                    <input className={styles.shortInput} placeholder='First Name' />
-                </div>
-                <div className={styles.input}>
-                    <div className={styles.inputText}>
-                        Last Name
-                    </div>
-                    <input className={styles.shortInput} placeholder='Last Name' />
-                </div>
-            </div>
             <div className={styles.input}>
                 <div className={styles.inputText}>
                     Email Address
@@ -37,13 +23,13 @@ const RegisterForm = () => {
                 </div>
                 <input type="password" className={styles.longInput} placeholder='Password' />
             </div>
-            <button className={styles.registerButton}>
-                Register
+            <button className={styles.signInButton}>
+                Sign in
             </button>
             <div className={styles.loginSection}>
                 <span>
-                    Already have an account? <Link href='/login' className={styles.loginLink}> Log in </Link>
-                    or sign in with Google below.
+                    Don&apos;t have an account? <Link href='/register' className={styles.loginLink}> Register </Link>
+                    or sign up with Google below.
                 </span>
             </div>
             <div className={styles.iconButtonSection}>
@@ -55,4 +41,4 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm
+export default LoginForm

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Select } from '@mantine/core'
+import { MultiSelect } from '@mantine/core'
 import classes from './InputSelectFilter.module.css'
 
 interface InputSelectFilterSettings {
@@ -10,7 +10,7 @@ interface InputSelectFilterSettings {
 
 const InputSelectFilter = (props: InputSelectFilterSettings) => {
   return (
-    <Select
+    <MultiSelect
       classNames={{
         wrapper: classes.wrapper,
         dropdown: classes.dropdown,
@@ -21,6 +21,7 @@ const InputSelectFilter = (props: InputSelectFilterSettings) => {
       label={props.title}
       data={props.options}
       searchable
+      clearable
       variant="standard"
     />
   )
