@@ -2,11 +2,14 @@
 'use client'
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
+import { GlobalAuthContextProvider } from '@/contexts/AuthContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <MantineProvider>
-      {children}
+      <GlobalAuthContextProvider>
+        {children}
+      </GlobalAuthContextProvider>
     </MantineProvider>
   )
 }

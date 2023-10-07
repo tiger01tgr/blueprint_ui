@@ -1,0 +1,37 @@
+.liner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: var(--blue10);
+    font-weight: 600;
+    height: 35px;
+    width: 140px;
+    border-radius: 2px;
+}
+
+.buttonRoot {
+    color: var(--black)
+}
+
+.header {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.modalLiner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modalTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modalDescription {
+    font-size: 14px;
+    max-height: 300px;
+}
