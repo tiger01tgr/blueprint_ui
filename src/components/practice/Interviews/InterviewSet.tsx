@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useCallback, useEffect } from 'react'
+import WebcamRecorder from './WebcamRecorder/WebcamRecorder'
 import styles from './InterviewSet.module.css'
 
 interface InterviewSetProps {
@@ -37,12 +38,8 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
           </div>
         </div>
         <div className={styles.rightSection}>
+          <WebcamRecorder questionSize={questions.length} currentQuestion={currentIndex + 1} handleNextQuestion={handleNextQuestion}/>
         </div>
-      </div>
-      <div className={styles.buttonSection}>
-        <button onClick={handleNextQuestion} className={styles.nextButton}>
-          {isLastQuestion ? 'Finish' : 'Next Question'}
-        </button>
       </div>
     </div>
   ), [currentQuestion])

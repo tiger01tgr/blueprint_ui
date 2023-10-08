@@ -1,6 +1,5 @@
 'use client'
-
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Image from 'next/image'
 import McDonalds from '../../../../public/mcdonaldsapp.png'
 import styles from './page.module.css'
@@ -44,6 +43,7 @@ export default function InterviewPage() {
   const pathname = usePathname()
   const setName = pathname.replace("/practice/", "")
   const [questionSet, setQuestionSet] = useState<QuestionSet>()
+  const [width, setWidth] = useState(0)
 
   useEffect(() => {
     async function fetchData() {
@@ -51,9 +51,10 @@ export default function InterviewPage() {
       if (questionSet) {
         setQuestionSet(questionSet)
       }
+      setWidth(window.innerWidth)
     }
     fetchData()
-  })
+  }, [])
 
   if (!questionSet) {
     return <div>loading...</div>
@@ -61,12 +62,12 @@ export default function InterviewPage() {
 
   return (
     <div className={styles.liner}>
-      <div className={styles.hideInterview}>
-        <InterviewSet questionSet={questionSet}/>
-      </div>
-      <div className={styles.getOffMobile}>
-        <Image alt='mcdonalds app' src={McDonalds} height={500}/>
-        no way you&apos;re about to mock interview on mobile!?! move to desktop for a better experience
+      <div className={styles.liner}>
+        {width >= 1024 ? <InterviewSet questionSet={questionSet} />
+          : <div className={styles.getOffMobile}>
+            <Image alt='mcdonalds app' src={McDonalds} height={500} />
+            no way you&apos;re about to mock interview on mobile!?! move to desktop for a better experience
+          </div>}
       </div>
     </div>
   )

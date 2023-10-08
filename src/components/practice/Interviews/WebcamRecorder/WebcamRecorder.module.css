@@ -1,0 +1,51 @@
+.webcam {
+    width: 300px;
+    height: 300px;
+}
+
+.startButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green);
+    color: var(--white);
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.stopButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--crimson);
+    color: var(--white);
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.nextButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    color: var(--white);
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.primaryButtonSection {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
