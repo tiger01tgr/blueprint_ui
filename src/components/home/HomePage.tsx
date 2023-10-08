@@ -1,11 +1,10 @@
 import styles from './page.module.css'
+import HeaderSection from './HeaderSection/HeaderSection'
 
 const HomePage = () => {
   return (
     <div className={styles.liner}>
-      <div className={styles.title}>
-        Mock Interviews with AI
-      </div>
+      <HeaderSection />
     </div>
   )
 }
