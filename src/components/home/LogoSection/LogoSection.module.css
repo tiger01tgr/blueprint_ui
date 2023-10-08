@@ -1,9 +1,10 @@
-.liner {
+.main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 20vh;
+    width: 100vw;
 }
 
 .title {
@@ -22,8 +23,6 @@
     position: relative;
     align-items: space-evenly;
     display: flex;
-    flex-direction: column;
-    width: 100%;
 }
 
 .logo {
@@ -60,32 +59,22 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
 }
 
+.logosParent {
+    display: block;
+}
+
 .logos_slide {
     display: inline-block;
     animation: 20s slide infinite linear;
 }
 
-@keyframes slide2 {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-}
-
-.logos_slide2 {
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    display: inline-block;
-    animation: 24s slide2 infinite linear;
-}
 .gallerydiv {
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
+
 .gallery {
     display: none;
     flex-direction: row;

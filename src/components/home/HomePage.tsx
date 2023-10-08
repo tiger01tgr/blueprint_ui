@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <div className={styles.liner}>
       <HeaderSection />
-      {/* <LogoSection /> */}
+      <LogoSection />
       <BenefitsSection />
     </div>
   )
