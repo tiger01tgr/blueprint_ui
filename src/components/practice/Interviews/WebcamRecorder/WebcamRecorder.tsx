@@ -66,7 +66,7 @@ const WebcamRecorder = ({ questionSize, currentQuestion, handleNextQuestion }: W
 
     return (
         <>
-            <Webcam ref={webcamRef} width={600} />
+            <Webcam audio={true} muted={true} ref={webcamRef} width={600} />
             <div className={styles.primaryButtonSection}>
                 {capturing ? (
                     <button onClick={handleStopCaptureClick} className={styles.stopButton}>
@@ -78,7 +78,7 @@ const WebcamRecorder = ({ questionSize, currentQuestion, handleNextQuestion }: W
                     </button>
                 )}
                 {recordedChunks.length > 0 && (
-                    <button onClick={handleS3} className={styles.nextButton}>
+                    <button onClick={handleS3} className={styles.nextButton} disabled={capturing}>
                         {isLastQuestion ? 'Finish' : 'Next Question'}
                     </button>
                 )}
