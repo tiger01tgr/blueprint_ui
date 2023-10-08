@@ -1,6 +1,6 @@
 .input {
     border-radius: 5px;
-    background: white;
+    background: var(--white);
     max-width: 200px;
 
     @media (max-width: 540px) {

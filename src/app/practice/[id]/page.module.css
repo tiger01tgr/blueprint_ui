@@ -1,0 +1,25 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hideInterview {
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
+
+.getOffMobile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--black);
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
