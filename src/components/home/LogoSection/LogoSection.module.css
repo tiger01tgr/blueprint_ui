@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     height: 20vh;
     width: 100vw;
 }
@@ -18,14 +17,15 @@
 }
 
 .logos {
+    display: flex;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
     align-items: space-evenly;
-    display: flex;
 }
 
 .logo {
+    display: inline-block;
     margin: 2vh 2vw;
     height: clamp(10px, 5vw, 100px);
 }
@@ -59,12 +59,9 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
 }
 
-.logosParent {
-    display: block;
-}
-
 .logos_slide {
     display: inline-block;
+
     animation: 20s slide infinite linear;
 }
 
