@@ -7,6 +7,7 @@
     margin-top: 20px;
     margin-bottom: 60px;
     height: 200px;
+    width: 100vw;
 
     @media (max-width: 540px) {
         width: 100vw;
@@ -39,12 +40,12 @@
 
 .logo {
     display: inline-block;
-    margin-right: 40px;
-    width: 200px;
+    width: 120px;
+    margin-right: 125px;
 
     @media (max-width: 540px) {
-        width: 90px;
-        margin-right: 90px;
+        width: 80px;
+        margin-right: 85px;
     }
 }
 
@@ -79,9 +80,9 @@
 
 .logosSlide {
     display: inline-block;
-    animation: 20s slide infinite linear;
+    animation: 50s slide infinite linear;
 
     @media (max-width: 540px) {
-        animation: 15s slide infinite linear;
+        animation: 35s slide infinite linear;
     }
 }

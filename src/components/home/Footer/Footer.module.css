@@ -1,7 +1,7 @@
 .liner {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100vw;
     padding: 20px 200px 20px 200px;
 
     @media (max-width: 540px) {
