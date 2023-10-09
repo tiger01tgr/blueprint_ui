@@ -41,7 +41,7 @@ const BenefitsSection = () => {
               Valuable suggestions
             </div>
             <div className={styles.cardDescription}>
-              Blueprint tracks how you&apos;ve grown over time and identifies key strengths and weaknesses. Grow faster with Blueprint.
+              Bluprint tracks how you&apos;ve grown over time and identifies key strengths and weaknesses. Grow faster with Bluprint.
             </div>
           </div>
         </div>

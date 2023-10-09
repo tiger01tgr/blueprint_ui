@@ -1,0 +1,27 @@
+.liner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    width: 100%;
+    align-items: center;
+    padding: 20px 200px 20px 200px;
+}
+
+.copyright {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gray);
+}
+
+.terms {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    color: var(--gray);
+}
+
+.link:hover {
+    color: var(--gray);
+    text-decoration: underline;
+}
