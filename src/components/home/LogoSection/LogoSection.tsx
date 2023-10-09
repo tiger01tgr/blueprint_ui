@@ -69,6 +69,14 @@ const LogoSection = () => {
                     </div>
                 </div>
             </div>
+            <div className={styles.gallery}>
+                <Image src={google} alt="google" className={styles.staticLogo} />
+                <Image src={lazard} alt="lazard" className={styles.staticLogo} />
+                <Image src={amd} alt="amd" className={styles.staticLogo} />
+                <Image src={openai} alt="openai" className={styles.staticLogo} />
+                <Image src={mckinsey} alt="mckinsey" className={styles.staticLogo} />
+                <Image src={spacex} alt='spacex' className={styles.staticLogo} />
+            </div>
         </div>
     )
 }

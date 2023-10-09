@@ -12,7 +12,7 @@
     @media (max-width: 540px) {
         width: 100vw;
         margin-top: 50px;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
 }
 
@@ -35,6 +35,10 @@
 
     @media (max-width: 540px) {
         height: 300px;
+    }
+
+    @media (max-width: 540px) {
+        display: none;
     }
 }
 
@@ -85,4 +89,21 @@
     @media (max-width: 540px) {
         animation: 35s slide infinite linear;
     }
+}
+
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    @media (min-width: 540px) {
+        display: none;
+    }
+}
+
+.staticLogo {
+    width: 100px;
 }
