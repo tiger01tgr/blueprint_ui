@@ -1,11 +1,20 @@
 .liner {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 200px 20px 200px;
+
+    @media (max-width: 540px) {
+        padding: 20px;
+    }
+}
+
+.footerSection {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 100px;
-    width: 100%;
     align-items: center;
-    padding: 20px 200px 20px 200px;
+    flex-wrap: wrap;
 }
 
 .copyright {
@@ -24,4 +33,11 @@
 .link:hover {
     color: var(--gray);
     text-decoration: underline;
+}
+
+.line {
+    width: 80vw;
+    border-top: 2px solid var(--lightGray);
+    margin-bottom: 30px;
+    align-self: center;
 }
