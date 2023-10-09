@@ -1,0 +1,4 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+}
