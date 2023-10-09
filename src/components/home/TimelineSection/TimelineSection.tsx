@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './TimelineSection.module.css'
 
 const TimelineSection = () => {
@@ -50,6 +51,20 @@ const TimelineSection = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className={styles.buttonSection}>
+                <Link href='/practice'>
+                    <button className={styles.interviewButton}>
+                        <div className={styles.interviewButtonText}>
+                            <div className={styles.interviewButtonMainText}>
+                                Interview now
+                            </div>
+                            <div className={styles.interviewButtonSubText}>
+                                — it&apos;s free
+                            </div>
+                        </div>
+                    </button>
+                </Link>
             </div>
         </div>
     )

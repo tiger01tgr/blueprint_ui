@@ -91,3 +91,34 @@
     line-height: 20px;
     font-weight: 400;
 }
+
+.interviewButton {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to right, var(--sapphire), var(--blue80));
+    height: 60px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.interviewButtonText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.interviewButtonMainText {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.interviewButtonSubText {
+    font-size: 18px;
+    color: #DCDCDC;
+}
