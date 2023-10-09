@@ -146,16 +146,6 @@ const TermsPage = () => {
                 </div>
                 <div className={styles.termsSection}>
                     <div className={styles.termsTitle}>
-                        Advertisers
-                    </div>
-                    <div className={styles.termsDescriptionSection}>
-                        <div className={styles.termsDescription}>
-                            We allow advertisers to display their advertisements and other information in certain areas of the Site, such as sidebar advertisements or banner advertisements. If you are an advertiser, you shall take full responsibility for any advertisements you place on the Site and any services provided on the Site or products sold through those advertisements. Further, as an advertiser, you warrant and represent that you possess all rights and authority to place advertisements on the Site, including, but not limited to, intellectual property rights, publicity rights, and contractual rights. We simply provide the space to place such advertisements, and we have no other relationship with advertisers.
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.termsSection}>
-                    <div className={styles.termsTitle}>
                         Site Modifications
                     </div>
                     <div className={styles.termsDescriptionSection}>
