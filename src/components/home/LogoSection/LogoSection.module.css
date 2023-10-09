@@ -1,9 +1,19 @@
-.main {
+.liner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 20vh;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    height: 200px;
     width: 100vw;
+
+    @media (max-width: 540px) {
+        width: 100vw;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
 }
 
 .title {
@@ -22,12 +32,25 @@
     white-space: nowrap;
     position: relative;
     align-items: space-evenly;
+
+    @media (max-width: 540px) {
+        height: 300px;
+    }
+
+    @media (max-width: 540px) {
+        display: none;
+    }
 }
 
 .logo {
     display: inline-block;
-    margin: 2vh 2vw;
-    height: clamp(10px, 5vw, 100px);
+    width: 120px;
+    margin-right: 125px;
+
+    @media (max-width: 540px) {
+        width: 80px;
+        margin-right: 85px;
+    }
 }
 
 @keyframes slide {
@@ -59,47 +82,28 @@
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
 }
 
-.logos_slide {
+.logosSlide {
     display: inline-block;
+    animation: 50s slide infinite linear;
 
-    animation: 20s slide infinite linear;
-}
-
-.gallerydiv {
-    display: none;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    @media (max-width: 540px) {
+        animation: 35s slide infinite linear;
+    }
 }
 
 .gallery {
-    display: none;
+    display: flex;
     flex-direction: row;
-    gap: clamp(15px, 10vw, 50px);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
+    gap: 20px;
 
-
-.logo_static {
-    height: clamp(20px, 12vw, 60px);
-}
-
-@media only screen and (max-width: 768px) {
-    .logos {
+    @media (min-width: 540px) {
         display: none;
     }
-    .gallery {
-        display: flex;
-    }
-    .gallerydiv {
-        display: flex;
-    }
 }
 
-.text {
-    font-size: clamp(24px, 10vw, 60px);
-    font-weight: 200;
-    text-align: center;
+.staticLogo {
+    width: 100px;
 }

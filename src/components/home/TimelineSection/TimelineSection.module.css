@@ -1,0 +1,93 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100vw;
+
+    @media (max-width: 540px) {
+        width: 100vw;
+    }
+}
+
+.title {
+    text-align: center;
+    color: var(--black);
+    font-size: 36px;
+    letter-spacing: -1px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.timelineSection {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 540px) {
+        width: 100%;
+    }
+}
+
+.timelinePart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timelineNode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: linear-gradient(to right, var(--sapphire), var(--blue80));
+    color: var(--white);
+    font-weight: 700;
+}
+
+.timelineLine {
+    height: 30px;
+    width: 3px;
+    background: linear-gradient(var(--sapphire), transparent);
+}
+
+.timelineLineReverse {
+    height: 40px;
+    width: 3px;
+    background: linear-gradient(transparent, var(--sapphire));
+}
+
+.timelinePartText {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+
+    @media (max-width: 540px) {
+        width: 100%;
+    }
+}
+
+.timelinePartTitle {
+    color: var(--black);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.timelinePartSubtitle {
+    color: var(--black);
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+}
