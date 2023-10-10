@@ -31,12 +31,12 @@ const LogoSection = () => {
                         <Image src={spacex} alt='spacex' className={styles.logo} />
                         <Image src={shopify} alt="shopify" className={styles.logo} />
                         <Image src={amd} alt="amd" className={styles.logo} />
-                        {/* <Image src={nvidia} alt='nvidia' className={styles.logo} />
-                        <Image src={bain} alt='bain' className={styles.logo} /> */}
+                        <Image src={nvidia} alt='nvidia' className={styles.logo} />
+                        {/* <Image src={bain} alt='bain' className={styles.logo} /> */}
                         <Image src={coinbase} alt='coinbase' className={styles.logo} />
                         <Image src={ms} alt='ms' className={styles.logo} />
                         <Image src={google} alt='google' className={styles.logo} />
-                        <Image src={jpm} alt='jpm' className={styles.logo} />
+                        {/* <Image src={jpm} alt='jpm' className={styles.logo} /> */}
                         <Image src={blackrock} alt="blackrock" className={styles.logo} />
                         <Image src={paypal} alt="paypal" className={styles.logo} />
                         <Image src={mckinsey} alt="mckinsey" className={styles.logo} />
@@ -51,12 +51,12 @@ const LogoSection = () => {
                         <Image src={spacex} alt='spacex' className={styles.logo} />
                         <Image src={shopify} alt="shopify" className={styles.logo} />
                         <Image src={amd} alt="amd" className={styles.logo} />
-                        {/* <Image src={nvidia} alt='nvidia' className={styles.logo} />
-                        <Image src={bain} alt='bain' className={styles.logo} /> */}
+                         <Image src={nvidia} alt='nvidia' className={styles.logo} />
+                        {/* <Image src={bain} alt='bain' className={styles.logo} /> */}
                         <Image src={coinbase} alt='coinbase' className={styles.logo} />
                         <Image src={ms} alt='ms' className={styles.logo} />
                         <Image src={google} alt='google' className={styles.logo} />
-                        <Image src={jpm} alt='jpm' className={styles.logo} />
+                        {/* <Image src={jpm} alt='jpm' className={styles.logo} /> */}
                         <Image src={blackrock} alt="blackrock" className={styles.logo} />
                         <Image src={paypal} alt="paypal" className={styles.logo} />
                         <Image src={mckinsey} alt="mckinsey" className={styles.logo} />

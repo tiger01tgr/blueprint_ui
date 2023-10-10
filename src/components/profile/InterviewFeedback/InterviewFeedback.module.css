@@ -1,0 +1,38 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70vw;
+    padding: 20px;
+    outline: 0.3px solid var(--lightGray);
+
+    @media (max-width: 540px) {
+        margin-top: 30px;
+        position: relative;
+        left: -35px;
+        width: 100vw;
+        align-items: center;
+    }
+}
+
+.title {
+    color: var(--black);
+    font-size: 26px;
+    font-weight: 600;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.practiceMore {
+    margin-top: 5px;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--sapphire);
+}
+
+.feedbackGrid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px;
+}

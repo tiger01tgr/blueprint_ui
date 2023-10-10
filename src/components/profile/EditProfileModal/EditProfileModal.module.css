@@ -1,0 +1,107 @@
+.editProfileButton {
+    background-color: var(--sapphire);
+    color: var(--white);
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.liner {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 540px) {
+        width: 80vw;
+    }
+}
+
+.nameSection {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+}
+
+.inputText {
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.shortInput {
+    border: 1px solid rgba(0, 21, 20, 0.1);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+}
+
+.longInput {
+    border: 1px solid rgba(0, 21, 20, 0.1);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+    outline: none;
+}
+
+.saveButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--sapphire);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.iconButtonSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginSection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 14px;
+    gap: 2px;
+}
+
+.loginLink {
+    color: var(--sapphire);
+    font-weight: 700;
+}

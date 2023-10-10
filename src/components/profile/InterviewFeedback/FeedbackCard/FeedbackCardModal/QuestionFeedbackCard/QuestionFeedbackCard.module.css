@@ -1,0 +1,33 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.label {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    font-size: 16px;
+}
+
+.video {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    font-size: 16px;
+}

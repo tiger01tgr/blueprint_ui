@@ -1,20 +1,53 @@
-import React, { useRef, useState, useCallback } from "react"
+import React, { useRef, useState, useCallback, useEffect } from "react"
 import Webcam from "react-webcam"
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import styles from './WebcamRecorder.module.css'
 
 interface WebcamRecorderProps {
-    questionSize: number;
-    currentQuestion: number;
+    isLastQuestion: boolean;
+    currentQuestion: Question;
     handleNextQuestion: any;
 }
 
-const WebcamRecorder = ({ questionSize, currentQuestion, handleNextQuestion }: WebcamRecorderProps) => {
-    const isLastQuestion = currentQuestion === questionSize
-
+const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }: WebcamRecorderProps) => {
     const webcamRef = useRef<any>(null)
     const mediaRecorderRef = useRef<any>(null)
     const [capturing, setCapturing] = useState(false)
     const [recordedChunks, setRecordedChunks] = useState([])
+    const [remainingTime, setRemainingTime] = useState(parseInt(currentQuestion.timeLimit))
+    const [key, setKey] = useState(0)
+
+    useEffect(() => {
+        setRemainingTime(parseInt(currentQuestion.timeLimit))
+        setKey((prevKey) => prevKey + 1)
+    }, [currentQuestion])
+
+    const renderTime = ({ remainingTime }: any) => {
+        const minutes = Math.floor(remainingTime / 60)
+        const seconds = remainingTime % 60
+
+        return (
+            <div className={styles.timer}>
+                <div className={styles.timerTitle}>
+                    Remaining Time
+                </div>
+                <div className={styles.timerText}>
+                    {remainingTime === 0 ? (
+                        <div className={styles.timerUp}>Time&apos;s up!</div>
+                    ) : (
+                        <div className={styles.timerText}>
+                            {minutes > 0 ? (
+                                <div>{minutes} {minutes === 1 ? 'minute' : 'minutes'}</div>
+                            ) : null}
+                            {seconds > 0 ? (
+                                <div>{seconds} {seconds === 1 ? 'second' : 'seconds'}</div>
+                            ) : null}
+                        </div>
+                    )}
+                </div>
+            </div>
+        )
+    }
 
     const handleStartCaptureClick = React.useCallback(() => {
         setCapturing(true)
@@ -65,8 +98,23 @@ const WebcamRecorder = ({ questionSize, currentQuestion, handleNextQuestion }: W
     }, [recordedChunks])
 
     return (
-        <>
-            <Webcam audio={true} muted={true} ref={webcamRef} width={600} />
+        <div className={styles.liner}>
+            <div className={styles.recordSection}>
+                <Webcam audio={true} muted={true} ref={webcamRef} width={600} />
+                <div className={styles.circleLiner}>
+                    <CountdownCircleTimer
+                        key={key}
+                        isPlaying={capturing}
+                        duration={remainingTime}
+                        colors={"#004777"}
+                        onComplete={() => ({ shouldRepeat: false })}
+                        size={440}
+                        initialRemainingTime={remainingTime}
+                    >
+                        {renderTime}
+                    </CountdownCircleTimer>
+                </div>
+            </div>
             <div className={styles.primaryButtonSection}>
                 {capturing ? (
                     <button onClick={handleStopCaptureClick} className={styles.stopButton}>
@@ -83,7 +131,7 @@ const WebcamRecorder = ({ questionSize, currentQuestion, handleNextQuestion }: W
                     </button>
                 )}
             </div>
-        </>
+        </div>
     )
 }
 

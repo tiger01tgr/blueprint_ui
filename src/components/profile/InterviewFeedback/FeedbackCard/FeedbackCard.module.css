@@ -1,0 +1,76 @@
+.liner {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 260px;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.topSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tag {
+    background-color: var(--blue40);
+    height: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--sapphire);
+    text-align: center;
+    width: 85px;
+    border-radius: 7px;
+}
+
+.info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.setName {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.position {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.time {
+    font-size: 15px;
+    color: var(--gray);
+}
+
+.buttonSection {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.interviewButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: var(--white);
+    background-color: var(--sapphire80);
+    font-weight: 600;
+    height: 35px;
+    width: 140px;
+    border-radius: 2px;
+}

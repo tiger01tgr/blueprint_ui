@@ -42,8 +42,9 @@
 }
 
 .link {
-    color: var(--blue);
+    color: var(--sapphire);
     font-weight: 600;
+    font-size: 17px;
 }
 
 .buttonSection {
@@ -56,23 +57,25 @@
 }
 
 .button {
-    border: 2px solid var(--blue);
+    border: 2px solid var(--sapphire);
     height: 50px;
     width: 90px;
     border-radius: 5px;
-    color: var(--blue);
+    color: var(--sapphire);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     font-weight: 500;
+    font-size: 16px;
 }
 
 .button:hover {
-    border: 2px solid var(--blue);
-    background-color: var(--blue);
+    border: 2px solid var(--sapphire);
+    background-color: var(--sapphire);
     height: 50px;
     width: 90px;
     border-radius: 5px;
     color: var(--white);
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .menu {

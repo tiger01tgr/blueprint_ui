@@ -29,7 +29,7 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
   const renderQuestion = useCallback(() => (
     <div className={styles.liner}>
       <div className={styles.bodySection}>
-        <div className={styles.leftSection}>
+        <div className={styles.topSection}>
           <div className={styles.totalProgress}>
             Question {currentIndex + 1} of {questions.length}
           </div>
@@ -37,8 +37,8 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
             {currentQuestion.text}
           </div>
         </div>
-        <div className={styles.rightSection}>
-          <WebcamRecorder questionSize={questions.length} currentQuestion={currentIndex + 1} handleNextQuestion={handleNextQuestion}/>
+        <div className={styles.bottomSection}>
+          <WebcamRecorder isLastQuestion={isLastQuestion} currentQuestion={currentQuestion} handleNextQuestion={handleNextQuestion} />
         </div>
       </div>
     </div>
