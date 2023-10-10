@@ -4,10 +4,14 @@
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    height: 200px;
+    height: 260px;
     width: 300px;
-    gap: 10px;
     justify-content: space-between;
+}
+
+.topSection {
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -28,26 +32,33 @@
 }
 
 .info {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 3px;
 }
 
-.position {
+.setName {
     font-size: 18px;
     font-weight: 600;
     line-height: 22px;
 }
 
-.company {
-    font-size: 14px;
+.position {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.time {
+    font-size: 15px;
+    color: var(--gray);
 }
 
 .buttonSection {
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .interviewButton {

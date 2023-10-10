@@ -33,6 +33,7 @@ interface FeedbackSet {
     interviewSetName: string;
     interviewPosition: string;
     interviewEmployerLogo: string;
+    feedbackGivenTime: Date;
 }
 
 interface Feedback {
