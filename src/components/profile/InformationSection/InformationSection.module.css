@@ -1,6 +1,4 @@
 .liner {
-    position: relative;
-    left: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,6 +6,7 @@
     width: 280px;
     padding: 30px;
     border-radius: 5px;
+    height: 70vh;
 }
 
 .divider {

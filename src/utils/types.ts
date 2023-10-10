@@ -25,3 +25,18 @@ interface User {
     phone?: string;
     resume?: string;
 }
+
+interface FeedbackSet {
+    id: string;
+    feedback: Feedback[];
+    type: string;
+    interviewSetName: string;
+    interviewPosition: string;
+    interviewEmployerLogo: string;
+}
+
+interface Feedback {
+    questionText: string;
+    response: string;
+    feedbackText: string;
+}
