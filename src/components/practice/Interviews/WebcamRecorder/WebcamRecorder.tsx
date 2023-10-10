@@ -15,7 +15,7 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     const [capturing, setCapturing] = useState(false)
     const [recordedChunks, setRecordedChunks] = useState([])
     const [remainingTime, setRemainingTime] = useState(parseInt(currentQuestion.timeLimit))
-    const [key, setKey] = useState(0);
+    const [key, setKey] = useState(0)
 
     useEffect(() => {
         setRemainingTime(parseInt(currentQuestion.timeLimit))
@@ -23,11 +23,6 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     }, [currentQuestion])
 
     const renderTime = ({ remainingTime }: any) => {
-        if (remainingTime === 0) {
-            handleStopCaptureClick()
-            handleS3()
-        }
-
         const minutes = Math.floor(remainingTime / 60)
         const seconds = remainingTime % 60
 
@@ -37,10 +32,18 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
                     Remaining Time
                 </div>
                 <div className={styles.timerText}>
-                    {minutes > 0 ? (
-                        <div>{minutes} {minutes === 1 ? 'minute' : 'minutes'}</div>
-                    ) : null}
-                    {seconds == 1 ? <div>{seconds} second</div> : <div>{seconds} seconds</div>}
+                    {remainingTime === 0 ? (
+                        <div className={styles.timerUp}>Time&apos;s up!</div>
+                    ) : (
+                        <div className={styles.timerText}>
+                            {minutes > 0 ? (
+                                <div>{minutes} {minutes === 1 ? 'minute' : 'minutes'}</div>
+                            ) : null}
+                            {seconds > 0 ? (
+                                <div>{seconds} {seconds === 1 ? 'second' : 'seconds'}</div>
+                            ) : null}
+                        </div>
+                    )}
                 </div>
             </div>
         )
@@ -105,7 +108,7 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
                         duration={remainingTime}
                         colors={"#004777"}
                         onComplete={() => ({ shouldRepeat: false })}
-                        size={400}
+                        size={440}
                         initialRemainingTime={remainingTime}
                     >
                         {renderTime}

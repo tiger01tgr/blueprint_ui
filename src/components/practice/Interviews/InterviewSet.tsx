@@ -26,10 +26,6 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
 
   const isLastQuestion = currentIndex === questions.length - 1
 
-  const renderWebcam = useCallback(() => (
-    <WebcamRecorder isLastQuestion={isLastQuestion} currentQuestion={currentQuestion} handleNextQuestion={handleNextQuestion}/>
-  ), [currentQuestion])
-
   const renderQuestion = useCallback(() => (
     <div className={styles.liner}>
       <div className={styles.bodySection}>
@@ -42,7 +38,7 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
           </div>
         </div>
         <div className={styles.bottomSection}>
-          {renderWebcam()}
+          <WebcamRecorder isLastQuestion={isLastQuestion} currentQuestion={currentQuestion} handleNextQuestion={handleNextQuestion} />
         </div>
       </div>
     </div>

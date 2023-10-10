@@ -69,7 +69,7 @@
 }
 
 .timerTitle {
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 600;
     letter-spacing: -1px;
     line-height: 40px;
@@ -77,10 +77,15 @@
 }
 
 .timerText {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 600;
     color: var(--black);
     display: flex;
     flex-direction: row;
     gap: 10px;
+    justify-content: center;
+}
+
+.timerUp {
+    color: var(--crimson);
 }
