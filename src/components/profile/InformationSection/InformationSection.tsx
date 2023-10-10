@@ -92,7 +92,7 @@ const InformationSection = ({ user }: Props) => {
                     <AiOutlineFilePdf size={22} />
                     {
                         user.resume ?
-                            <Link href={user.resume}>
+                            <Link href={user.resume} target="_blank">
                                 <div className={styles.link}>
                                     View uploaded resume
                                 </div>
