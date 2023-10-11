@@ -26,6 +26,13 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
         const minutes = Math.floor(remainingTime / 60)
         const seconds = remainingTime % 60
 
+        if (remainingTime == 0) {
+            setTimeout(function () {
+                handleStopCaptureClick()
+                handleS3()
+            }, 5000)
+        }
+
         return (
             <div className={styles.timer}>
                 <div className={styles.timerTitle}>
