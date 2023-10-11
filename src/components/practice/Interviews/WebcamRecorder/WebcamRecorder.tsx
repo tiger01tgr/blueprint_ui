@@ -30,7 +30,7 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
             setTimeout(function () {
                 handleStopCaptureClick()
                 handleS3()
-            }, 5000)
+            }, 6000)
         }
 
         return (
