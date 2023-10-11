@@ -15,6 +15,7 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     const [capturing, setCapturing] = useState(false)
     const [recordedChunks, setRecordedChunks] = useState([])
     const [remainingTime, setRemainingTime] = useState(parseInt(currentQuestion.timeLimit))
+    const [started, setStarted] = useState<boolean>(false)
     const [key, setKey] = useState(0)
 
     useEffect(() => {
@@ -58,6 +59,8 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
 
     const handleStartCaptureClick = React.useCallback(() => {
         setCapturing(true)
+        setStarted(true)
+        setRecordedChunks([])
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
             mimeType: "video/webm"
         })
@@ -128,9 +131,15 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
                         Done Answering
                     </button>
                 ) : (
-                    <button onClick={handleStartCaptureClick} className={styles.startButton}>
-                        Start
-                    </button>
+                    started ? (
+                        <button onClick={handleStartCaptureClick} className={styles.startButton}>
+                            Restart
+                        </button>
+                    ) : (
+                        <button onClick={handleStartCaptureClick} className={styles.startButton}>
+                            Start
+                        </button>
+                    )
                 )}
                 {recordedChunks.length > 0 && (
                     <button onClick={handleS3} className={styles.nextButton} disabled={capturing}>

@@ -58,5 +58,3 @@ const timeAgo = (time: any) => {
 export default timeAgo
 
 var aDay = 24 * 60 * 60 * 1000
-console.log(timeAgo(new Date(Date.now() - aDay)))
-console.log(timeAgo(new Date(Date.now() - aDay * 2)))
