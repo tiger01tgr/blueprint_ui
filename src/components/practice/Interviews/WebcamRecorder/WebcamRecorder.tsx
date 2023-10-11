@@ -17,10 +17,13 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     const [remainingTime, setRemainingTime] = useState(parseInt(currentQuestion.timeLimit))
     const [started, setStarted] = useState<boolean>(false)
     const [key, setKey] = useState(0)
+    const [secondsLeft, setSecondsLeft] = useState(100)
 
     useEffect(() => {
         setRemainingTime(parseInt(currentQuestion.timeLimit))
+        setSecondsLeft(parseInt(currentQuestion.timeLimit))
         setKey((prevKey) => prevKey + 1)
+        setStarted(false)
     }, [currentQuestion])
 
     const renderTime = ({ remainingTime }: any) => {
@@ -28,9 +31,9 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
         const seconds = remainingTime % 60
 
         if (remainingTime == 0) {
+            setSecondsLeft(0)
             setTimeout(function () {
                 handleStopCaptureClick()
-                handleS3()
             }, 6000)
         }
 
@@ -86,6 +89,8 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     }, [mediaRecorderRef, webcamRef, setCapturing])
 
     const handleS3 = useCallback(() => {
+        mediaRecorderRef.current.stop()
+        setCapturing(false)
         if (recordedChunks.length) {
             // change this to send to s3
             const blob = new Blob(recordedChunks, {
@@ -131,15 +136,17 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
                         Done Answering
                     </button>
                 ) : (
-                    started ? (
-                        <button onClick={handleStartCaptureClick} className={styles.startButton}>
-                            Restart
-                        </button>
-                    ) : (
-                        <button onClick={handleStartCaptureClick} className={styles.startButton}>
-                            Start
-                        </button>
-                    )
+                    secondsLeft > 0 ? (
+                        started ? (
+                            <button onClick={handleStartCaptureClick} className={styles.startButton}>
+                                Restart
+                            </button>
+                        ) : (
+                            <button onClick={handleStartCaptureClick} className={styles.startButton}>
+                                Start
+                            </button>
+                        )
+                    ) : null
                 )}
                 {recordedChunks.length > 0 && (
                     <button onClick={handleS3} className={styles.nextButton} disabled={capturing}>
