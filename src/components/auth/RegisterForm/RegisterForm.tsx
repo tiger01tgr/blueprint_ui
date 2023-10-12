@@ -37,7 +37,7 @@ type FormValues = {
 const RegisterForm = () => {
     const { getUser, LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
     const router = useRouter()
-    const [type, toggle] = useToggle(['login', 'register']);
+    const [type, toggle] = useToggle(['register', 'login']);
     const form = useForm({
         initialValues: {
             email: '',
@@ -78,14 +78,6 @@ const RegisterForm = () => {
             {/* <Text size="lg" fw={500}>
                 Welcome to bluprint!
             </Text> */}
-
-            <Group grow mb="md" mt="md">
-                {buttons.map((social) => (
-                    <SignInWithButton key={social.id} props={social} />
-                ))}
-            </Group>
-
-            <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
             <form onSubmit={form.onSubmit(onSubmit)}>
             <Stack>
@@ -150,6 +142,13 @@ const RegisterForm = () => {
                 </button>
             </Group>
             </form>
+
+            <Divider label="Or continue with" labelPosition="center" my="lg" />
+            <Group grow mb="md" mt="md">
+                {buttons.map((social) => (
+                    <SignInWithButton key={social.id} props={social} />
+                ))}
+            </Group>
         </Paper>
     )
 }
