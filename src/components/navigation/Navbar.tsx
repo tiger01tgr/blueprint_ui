@@ -5,6 +5,7 @@ import styles from './Navbar.module.css'
 import Link from 'next/link'
 import Logo from '../../../public/logo.png'
 import NavMenu from './NavMenu/NavMenu'
+import useAuth from '@/hooks/auth/useAuth'
 
 const links = [
     { name: 'Practice', path: '/practice' },
@@ -17,11 +18,17 @@ const links = [
 const Navbar = () => {
     const [loggedIn, setLoggedIn] = useState(false)
     const [buttonData, setButtonData] =  useState<any>({ name: 'Sign Up', link: 'register'})
+    const { getUser } = useAuth()
 
     useEffect(() => {
-        //check if logged in
-        // setLoggedIn(true)
-    })
+        const setLoggedInState = async () => {
+            const user = await getUser()
+            if (user) {
+                setLoggedIn(true)
+            }
+        }
+        setLoggedInState()
+    }, [])
 
     useEffect(() => {
         if (loggedIn) {
