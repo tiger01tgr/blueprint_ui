@@ -13,15 +13,11 @@ import {
 } from '@mantine/core';
 import styles from './RegisterForm.module.css'
 import { SignInWithButton } from '../SignIns/SignInWithButton';
-import { SocialIcon, Google } from '../SignIns/SocialIconConfig';
 import useAuth from '@/hooks/auth/useAuth';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mantine/core';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
-const buttons: SocialIcon[] = [
-    Google
-]
 
 type FormValues = {
     email: string;
@@ -166,11 +162,8 @@ const RegisterForm = () => {
             </form>
 
             <Divider label="Or continue with" labelPosition="center" my="lg" />
-            <Group grow mb="md" mt="md">
-                {buttons.map((social) => (
-                    <SignInWithButton key={social.id} props={social} />
-                ))}
-            </Group>
+            <SignInWithButton />
+   
         </Paper>
     )
 }

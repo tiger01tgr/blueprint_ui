@@ -69,14 +69,10 @@ const useAuth = () => {
         return auth.currentUser?.getIdToken(true)
     }
 
-    const Logout = () => {
+    const Logout = async () => {
         const auth = getAuthState()
         if (!auth) return new Error("auth not initialized")
-        signOut(auth).then(() => {
-            return null
-        }).catch((error) => {
-            return error
-        })
+        await signOut(auth)
     }
 
     return (
