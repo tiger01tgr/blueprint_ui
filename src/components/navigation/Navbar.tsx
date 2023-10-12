@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Logo from '../../../public/logo.png'
 import NavMenu from './NavMenu/NavMenu'
 import useAuth from '@/hooks/auth/useAuth'
+import { Button } from '@mantine/core'
 
 const links = [
     { name: 'Practice', path: '/practice' },
@@ -16,27 +17,19 @@ const links = [
 ]
 
 const Navbar = () => {
-    const [loggedIn, setLoggedIn] = useState(false)
+    // const [loggedIn, setLoggedIn] = useState(false)
     const [buttonData, setButtonData] =  useState<any>({ name: 'Sign Up', link: 'register'})
-    const { getUser } = useAuth()
-
+    const { authObj } = useAuth()
     useEffect(() => {
-        const setLoggedInState = async () => {
-            const user = await getUser()
-            if (user) {
-                setLoggedIn(true)
-            }
-        }
-        setLoggedInState()
-    }, [])
-
-    useEffect(() => {
-        if (loggedIn) {
+        if (authObj) {
             setButtonData({ name: 'Profile', link: 'profile'})
         }
-    }, [loggedIn])
+        else {
+            setButtonData({ name: 'Sign Up', link: 'register'})
+        }
+    }, [authObj])
 
-    const renderNavBar = useCallback(() => (
+    return  (
         <div className={styles.liner}>
             <div className={styles.header}>
                 <div className={styles.nonSignUpSection}>
@@ -64,12 +57,6 @@ const Navbar = () => {
                     <NavMenu buttonData={buttonData} />
                 </div>
             </div>
-        </div>
-    ), [loggedIn, buttonData])
-
-    return  (
-        <div>
-            {renderNavBar()}
         </div>
     )
 }

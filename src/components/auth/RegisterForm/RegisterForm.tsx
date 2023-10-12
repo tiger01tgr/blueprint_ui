@@ -32,7 +32,7 @@ type FormValues = {
 }
 
 const RegisterForm = () => {
-    const { getUser, LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
+    const { LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
     const router = useRouter()
     const [type, toggle] = useToggle(['register', 'login'])
     const [loginFailed, setLoginFailed] = useState(false)
@@ -60,7 +60,16 @@ const RegisterForm = () => {
     const onSubmit = (values: FormValues) => {
         switch (type) {
             case 'login':
-                console.log('login', values);
+                LoginWithEmailPassword(values.email, values.password)
+                    .then((error) => {
+                        if (error === null) {
+                            router.push('/profile')
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('error logging in')
+                        console.log(error)
+                    })
                 break;
 
             case 'register':
