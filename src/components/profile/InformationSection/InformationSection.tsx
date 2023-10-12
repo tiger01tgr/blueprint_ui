@@ -4,18 +4,26 @@ import { CiMail } from 'react-icons/ci'
 import { AiOutlineFilePdf, AiOutlinePhone } from 'react-icons/ai'
 import Link from 'next/link'
 import EditProfileModal from '../EditProfileModal/EditProfileModal'
+import useAuth from '@/hooks/auth/useAuth'
 
 interface Props {
     user: User | null;
 }
 
 const InformationSection = ({ user }: Props) => {
+    const { Logout } = useAuth()
+
     if (!user) {
         return (
             <div className={styles.liner}>
                 loading...
             </div>
         )
+    }
+
+    const handleLogout = () => {
+        Logout()
+        window.location.href = '/'
     }
 
 
@@ -106,6 +114,9 @@ const InformationSection = ({ user }: Props) => {
             </div>
             <div className={styles.buttonSection}>
                 <EditProfileModal user={user}/>
+                <button className={styles.button} onClick={handleLogout}>
+                    Sign Out
+                </button>
             </div>
         </div>
     )

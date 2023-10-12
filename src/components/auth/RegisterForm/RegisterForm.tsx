@@ -50,6 +50,7 @@ const RegisterForm = () => {
         validate: {
             email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
             password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
+            terms: (val) => (!val ? 'You must agree to the terms and conditions' : null),
         },
     });
     const onSubmit = (values: FormValues) => {
@@ -105,7 +106,7 @@ const RegisterForm = () => {
                 <TextInput
                     required
                     label="Email"
-                    placeholder="hello@mantine.dev"
+                    placeholder="Email"
                     value={form.values.email}
                     onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
                     error={form.errors.email && 'Invalid email'}
@@ -115,7 +116,7 @@ const RegisterForm = () => {
                 <PasswordInput
                     required
                     label="Password"
-                    placeholder="Your password"
+                    placeholder="Password"
                     value={form.values.password}
                     onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
                     error={form.errors.password && 'Password should include at least 6 characters'}
@@ -126,6 +127,7 @@ const RegisterForm = () => {
                 <Checkbox
                     label="I accept terms and conditions"
                     checked={form.values.terms}
+                    required={true}
                     onChange={(event) => form.setFieldValue('terms', event.currentTarget.checked)}
                 />
                 )}

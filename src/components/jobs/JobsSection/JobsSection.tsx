@@ -4,7 +4,7 @@ import styles from './JobsSection.module.css'
 const jobs: any[] = [
     {
         id: "MS123123321",
-        employerName: "Morgan Stanley",
+        employerName: "Apollo Global Management",
         employerLogo: "http://via.placeholder.com/100x100",
         position: "Summer 2024 Fixed Income Summer Analyst",
         type: "Full-time", 
