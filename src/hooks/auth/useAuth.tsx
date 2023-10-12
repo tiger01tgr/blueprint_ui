@@ -26,10 +26,12 @@ const useAuth = () => {
     }
 
     const RegisterWithEmailPassword = async (email: string, password: string, firstName: string, lastName: string): Promise<Error | null> => {
+        if (!auth) return new Error("auth not initialized");
+
         email = email.trim()
         firstName = firstName.trim()
         lastName = lastName.trim()
-
+    
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 // Signed up 
@@ -54,7 +56,7 @@ const useAuth = () => {
     }
 
     const getBearerToken  = () => {
-        if (!auth.currentUser) return ""
+        if (!auth || !auth.currentUser) return ""
         return auth.currentUser?.getIdToken(true)
     }
 
