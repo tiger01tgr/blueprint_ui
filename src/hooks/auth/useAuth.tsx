@@ -26,7 +26,7 @@ const useAuth = () => {
     }
 
     const RegisterWithEmailPassword = async (email: string, password: string, firstName: string, lastName: string): Promise<Error | null> => {
-        if (!auth) return new Error("auth not initialized");
+        if (!auth) return new Error("auth not initialized")
 
         email = email.trim()
         firstName = firstName.trim()
@@ -51,7 +51,7 @@ const useAuth = () => {
                 const errorMessage = error.message;
                 // ..
                 return errorMessage
-            });
+            })
         return null
     }
 
