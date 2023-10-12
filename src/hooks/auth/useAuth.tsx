@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { app } from '../../config/firebase'
-import { Auth, createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { createUserAccount } from './authApi';
+import { Auth, createUserWithEmailAndPassword, getAuth, signOut } from "firebase/auth"
+import { createUserAccount } from './authApi'
 
 
 const useAuth = () => {
@@ -26,7 +26,7 @@ const useAuth = () => {
     }
 
     const RegisterWithEmailPassword = async (email: string, password: string, firstName: string, lastName: string): Promise<Error | null> => {
-        if (!auth) return new Error("auth not initialized");
+        if (!auth) return new Error("auth not initialized")
 
         email = email.trim()
         firstName = firstName.trim()
@@ -51,7 +51,7 @@ const useAuth = () => {
                 const errorMessage = error.message;
                 // ..
                 return errorMessage
-            });
+            })
         return null
     }
 
@@ -60,12 +60,22 @@ const useAuth = () => {
         return auth.currentUser?.getIdToken(true)
     }
 
+    const Logout = () => {
+        if (!auth) return new Error("auth not initialized")
+        signOut(auth).then(() => {
+            return null
+        }).catch((error) => {
+            return error
+        })
+    }
+
     return (
         {
             getUser,
             getBearerToken,
             LoginWithEmailPassword,
             RegisterWithEmailPassword,
+            Logout
         }
     )
 }
