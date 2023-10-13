@@ -2,9 +2,10 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import WebcamRecorder from './WebcamRecorder/WebcamRecorder'
 import styles from './InterviewSet.module.css'
+import { QuestionSetWithQuestions, Question } from '@/utils/types/question'
 
 interface InterviewSetProps {
-  questionSet: QuestionSet
+  questionSet: QuestionSetWithQuestions
 }
 
 function InterviewSet({ questionSet }: InterviewSetProps) {
@@ -26,9 +27,9 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
 
   const isLastQuestion = currentIndex === questions.length - 1
 
-  const renderQuestion = useCallback(() => (
+  return (
     <div className={styles.liner}>
-      <div className={styles.bodySection}>
+            <div className={styles.bodySection}>
         <div className={styles.topSection}>
           <div className={styles.totalProgress}>
             Question {currentIndex + 1} of {questions.length}
@@ -41,12 +42,6 @@ function InterviewSet({ questionSet }: InterviewSetProps) {
           <WebcamRecorder isLastQuestion={isLastQuestion} currentQuestion={currentQuestion} handleNextQuestion={handleNextQuestion} />
         </div>
       </div>
-    </div>
-  ), [currentQuestion])
-
-  return (
-    <div className={styles.liner}>
-      {renderQuestion()}
     </div>
   )
 }

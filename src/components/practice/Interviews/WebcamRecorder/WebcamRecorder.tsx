@@ -2,6 +2,7 @@ import React, { useRef, useState, useCallback, useEffect } from "react"
 import Webcam from "react-webcam"
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import styles from './WebcamRecorder.module.css'
+import { Question } from '@/utils/types/question'
 
 interface WebcamRecorderProps {
     isLastQuestion: boolean;

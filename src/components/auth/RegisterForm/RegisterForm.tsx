@@ -13,15 +13,11 @@ import {
 } from '@mantine/core';
 import styles from './RegisterForm.module.css'
 import { SignInWithButton } from '../SignIns/SignInWithButton';
-import { SocialIcon, Google } from '../SignIns/SocialIconConfig';
 import useAuth from '@/hooks/auth/useAuth';
 import { useRouter } from 'next/navigation';
 import { Alert } from '@mantine/core';
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
-const buttons: SocialIcon[] = [
-    Google
-]
 
 type FormValues = {
     email: string;
@@ -32,7 +28,7 @@ type FormValues = {
 }
 
 const RegisterForm = () => {
-    const { getUser, LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
+    const { LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
     const router = useRouter()
     const [type, toggle] = useToggle(['register', 'login'])
     const [loginFailed, setLoginFailed] = useState(false)
@@ -60,7 +56,16 @@ const RegisterForm = () => {
     const onSubmit = (values: FormValues) => {
         switch (type) {
             case 'login':
-                console.log('login', values);
+                LoginWithEmailPassword(values.email, values.password)
+                    .then((error) => {
+                        if (error === null) {
+                            router.push('/profile')
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('error logging in')
+                        console.log(error)
+                    })
                 break;
 
             case 'register':
@@ -157,11 +162,8 @@ const RegisterForm = () => {
             </form>
 
             <Divider label="Or continue with" labelPosition="center" my="lg" />
-            <Group grow mb="md" mt="md">
-                {buttons.map((social) => (
-                    <SignInWithButton key={social.id} props={social} />
-                ))}
-            </Group>
+            <SignInWithButton />
+   
         </Paper>
     )
 }
