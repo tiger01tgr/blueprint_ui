@@ -56,9 +56,9 @@ const JobsBanner = () => {
         Jobs
       </div>
       <div className={styles.filterSection}>
-        {InputSelectFilters.map((filter) => (
+        {/* {InputSelectFilters.map((filter) => (
           <InputSelectFilter key={filter.title} {...filter} />
-        ))}
+        ))} */}
         {PracticeSelectFilters.map((filter) => (
           <MultiSelectFilter key={filter.title} {...filter} />
         ))}

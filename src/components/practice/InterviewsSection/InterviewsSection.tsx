@@ -1,4 +1,5 @@
 import InterviewCard from '@/components/shared/cards/InterviewCard/InterviewCard'
+import { QuestionSet } from '@/utils/types/question'
 import styles from './InterviewsSection.module.css'
 
 const interviews: any[] = [
@@ -39,11 +40,22 @@ const interviews: any[] = [
     }
 ]
 
-const InterviewsSection = () => {
+interface Props {
+    sets: QuestionSet[]
+}
+
+const InterviewsSection: React.FC<Props> = ({ sets }) => {
     return (
         <div className={styles.liner}>
-            {interviews.map((interview) => (
-                <InterviewCard key={interview.id} {...interview} />
+            {sets.map((interview : QuestionSet) => (
+                <InterviewCard 
+                    key={interview.id} 
+                    id={interview.id} 
+                    employerLogo={interview.logo} 
+                    employerName={interview.employerName} 
+                    position={interview.name}
+                    type={interview.interviewType}
+                    />
             ))}
         </div>
     )

@@ -13,6 +13,12 @@ const nextConfig = {
                 hostname: 'blueprint-dev-1234.s3.amazonaws.com',
                 port: '',
                 pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'blueprint-prod-1234.s3.amazonaws.com',
+                port: '',
+                pathname: '/**',
             }
         ],
     },

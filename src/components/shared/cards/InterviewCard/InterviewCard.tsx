@@ -3,25 +3,33 @@ import { BsFillLightningChargeFill } from 'react-icons/bs'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const InterviewCard = (props: any) => {
+interface Props {
+  id: number,
+  employerName: string,
+  employerLogo: string,
+  position: string,
+  type: string,
+}
+
+const InterviewCard: React.FC<Props> = ({id, employerLogo, employerName, position, type}) => {
   return (
     <div className={styles.liner}>
       <div className={styles.header}>
-        <Image alt='logo' src={props.employerLogo} width={80} height={80} />
+        <Image alt='logo' src={employerLogo} width={80} height={80} />
         <div className={styles.tag}>
-          {props.type}
+          {type}
         </div>
       </div>
       <div className={styles.info}>
         <div className={styles.position}>
-          {props.position}
+          {position}
         </div>
         <div className={styles.company}>
-          {props.employerName}
+          {employerName}
         </div>
       </div>
       <div className={styles.buttonSection}>
-        <Link href={`/practice/${props.id}`}>
+        <Link href={`/practice/${id}`}>
           <button className={styles.interviewButton}>
             <BsFillLightningChargeFill />
             <div>

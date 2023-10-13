@@ -5,49 +5,19 @@ import McDonalds from '../../../../public/mcdonaldsapp.png'
 import styles from './page.module.css'
 import { usePathname } from 'next/navigation'
 import InterviewSet from '@/components/practice/Interviews/InterviewSet'
-
-async function getQuestionSetData(setName: string) {
-  if (!setName) { return null }
-  const questionSet: QuestionSet = {
-    id: 'MS23T',
-    employerId: 'MS',
-    role: 'Analyst',
-    interviewType: 'Technical',
-    questions: [
-      {
-        id: '001123',
-        text: 'Create a DCF for Exxon Mobil. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        timeLimit: '5'
-      },
-      {
-        id: '001124',
-        text: 'Talk about a recent deal that you find interesting Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
-        timeLimit: '300'
-      },
-      {
-        id: '001125',
-        text: 'What is a merger that you think should happen Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        timeLimit: '300'
-      },
-      {
-        id: '001126',
-        text: 'What are financial indicators you would look to for a trucking company. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        timeLimit: '300'
-      }
-    ]
-  }
-  return questionSet
-}
+import usePractice from '@/hooks/practice/usePractice'
+import { QuestionSet, QuestionSetWithQuestions } from '@/utils/types/question'
 
 export default function InterviewPage() {
-  const pathname = usePathname()
-  const setName = pathname.replace("/practice/", "")
-  const [questionSet, setQuestionSet] = useState<QuestionSet>()
+  const id = usePathname().replace("/practice/", "")
+  const [questionSet, setQuestionSet] = useState<QuestionSetWithQuestions>()
   const [width, setWidth] = useState(0)
+  const { getQuestionSetWithQuestions } = usePractice()
+
 
   useEffect(() => {
-    async function fetchData() {
-      const questionSet = await getQuestionSetData(setName)
+    const fetchData = async () => {
+      const questionSet = await getQuestionSetWithQuestions(id)
       if (questionSet) {
         setQuestionSet(questionSet)
       }
@@ -63,8 +33,10 @@ export default function InterviewPage() {
   return (
     <div className={styles.liner}>
       <div className={styles.liner}>
-        {width >= 1024 ? <InterviewSet questionSet={questionSet} />
-          : <div className={styles.getOffMobile}>
+        {width >= 1024 ? 
+          <InterviewSet questionSet={questionSet} />
+          : 
+          <div className={styles.getOffMobile}>
             <Image alt='mcdonalds app' src={McDonalds} height={500} />
             you&apos;re about to mock interview on mobile!?! move to desktop for a better experience
           </div>}
