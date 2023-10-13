@@ -1,7 +1,7 @@
 .input {
     border-radius: 5px;
     background: var(--white);
-    max-width: 200px;
+    width: 200px;
 
     @media (max-width: 540px) {
         width: 160px;
