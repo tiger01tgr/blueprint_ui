@@ -11,11 +11,13 @@ interface Props {
   type: string,
 }
 
-const InterviewCard: React.FC<Props> = ({id, employerLogo, employerName, position, type}) => {
+const InterviewCard: React.FC<Props> = ({ id, employerLogo, employerName, position, type }) => {
   return (
     <div className={styles.liner}>
       <div className={styles.header}>
-        <Image alt='logo' src={employerLogo} width={80} height={80} />
+        <div className={styles.imageWrapper}>
+          <Image alt='logo' src={employerLogo} width={80} height={80} />
+        </div>
         <div className={styles.tag}>
           {type}
         </div>
