@@ -12,7 +12,7 @@ const ProfilePage = () => {
         async function getUserData() {
             const user1: User = {
                 id: '123321123',
-                firstName: 'Tiger Li',
+                firstName: 'Tiger',
                 middleName: '',
                 lastName: 'Li',
                 email: 'tiger01tgr@gmail.com',

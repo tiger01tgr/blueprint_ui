@@ -16,6 +16,13 @@
     justify-content: space-between;
 }
 
+.imageWrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 80px;
+}
+
 .tag {
     background-color: var(--blue40);
     height: 20px;
