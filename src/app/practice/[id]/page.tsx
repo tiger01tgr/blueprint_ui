@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import InterviewSet from '@/components/practice/Interviews/InterviewSet'
 import usePractice from '@/hooks/practice/usePractice'
 import { QuestionSet, QuestionSetWithQuestions } from '@/utils/types/question'
+import Loading from '@/components/loading/Loading'
 
 export default function InterviewPage() {
   const id = usePathname().replace("/practice/", "")
@@ -27,7 +28,7 @@ export default function InterviewPage() {
   }, [])
 
   if (!questionSet) {
-    return <div>loading...</div>
+    return <Loading />
   }
 
   return (
