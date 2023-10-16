@@ -6,7 +6,12 @@ import { GlobalAuthContextProvider } from '@/contexts/AuthContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider>
+    <MantineProvider
+      theme={{
+        colors: {
+          'darkBlue': ['#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4', '#0353A4'],
+        },
+      }}>
       <GlobalAuthContextProvider>
         {children}
       </GlobalAuthContextProvider>

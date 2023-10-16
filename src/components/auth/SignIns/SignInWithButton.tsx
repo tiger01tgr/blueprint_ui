@@ -5,6 +5,8 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { auth } from '@/config/firebase';
 import { IconType } from 'react-icons';
 import { useRouter } from 'next/navigation';
+import { createUserAccount, getMe } from '@/hooks/auth/authApi';
+import useAuth from '@/hooks/auth/useAuth';
 
 export interface SocialIcon {
     id: string,
@@ -16,6 +18,7 @@ export interface SocialIcon {
 
 export const SignInWithButton = () => {
     const router = useRouter()
+    const { getBearerToken } = useAuth()
     const [signInWithGoogle, loading, error] = useSignInWithGoogle(auth)
 
     const buttons: SocialIcon[] = [
@@ -28,9 +31,24 @@ export const SignInWithButton = () => {
     ]
 
     const onSignIn = async (signIn: () => any) => {
-        const success = await signIn();
+        const success = await signIn()
         if (success) {
-            router.push('/profile');
+            const userInfo = success._tokenResponse
+            const name = userInfo.fullName ? userInfo.fullName : userInfo.displayName
+            const firstName = userInfo.firstName ? userInfo.firstName : name.split(' ')[0]
+            const lastName = userInfo.lastName ? userInfo.lastName : name.split(' ')[1]
+            const middleName = ""
+            const email = userInfo.email
+            const token = await getBearerToken()
+            try {
+                const user = await getMe(token)
+                if (!user) { 
+                    await createUserAccount(email, firstName, lastName, middleName, token)
+                }
+                router.push('/profile')
+            } catch (error) {
+                console.log('shit')
+            }
         }
     }
 
