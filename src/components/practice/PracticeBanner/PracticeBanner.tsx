@@ -3,27 +3,6 @@ import InputSelectFilter, { Option } from '@/components/shared/dropdowns/filters
 import MultiSelectFilter from '@/components/shared/dropdowns/filters/MultiSelectFilter/MultiSelectFilter'
 import React from 'react'
 
-const InputSelectFilters = [
-    {
-        title: 'Company',
-        options: [
-            "Okta",
-            "Morgan Stanley",
-            "Google",
-            "Bain",
-            "McKinsey",
-            "Amazon",
-            "Stripe",
-            "Anduril",
-            "Palantir",
-            "OpenAI",
-            "ScaleAI",
-            "Apple",
-            "Microsoft"
-        ]
-    }
-]
-
 const PracticeSelectFilters = [
     {
         title: 'Industry',
@@ -68,7 +47,7 @@ interface Props {
 }
 // setSelectedIndustries, industryOptions, setSelectedRoles, roleOptions, setSelectedIndustries, interviewTypeOptions
 
-const PracticeBanner: React.FC<Props> = ({setSelectedCompanies, companyOptions }) => {
+const PracticeBanner: React.FC<Props> = ({ setSelectedCompanies, companyOptions }) => {
 
   return (
     <div className={styles.liner}>

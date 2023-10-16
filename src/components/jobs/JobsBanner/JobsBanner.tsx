@@ -1,64 +1,53 @@
 import styles from './JobsBanner.module.css'
 import InputSelectFilter from '@/components/shared/dropdowns/filters/InputSelectFilter/InputSelectFilter'
 import MultiSelectFilter from '@/components/shared/dropdowns/filters/MultiSelectFilter/MultiSelectFilter'
-
-const InputSelectFilters = [
-  {
-      title: 'Company',
-      options: [
-          "Okta",
-          "Morgan Stanley",
-          "Google",
-          "Bain",
-          "McKinsey",
-          "Amazon",
-          "Stripe",
-          "Anduril",
-          "Palantir",
-          "OpenAI",
-          "ScaleAI",
-          "Apple",
-          "Microsoft"
-      ]
-  }
-]
+import { Option } from '@/components/shared/dropdowns/filters/InputSelectFilter/InputSelectFilter'
 
 const PracticeSelectFilters = [
   {
-      title: 'Industry',
-      options: [
-          'Finance',
-          'Consulting',
-          'Technology',
-          'Start-ups',
-      ]
+    title: 'Industry',
+    options: [
+      'Finance',
+      'Consulting',
+      'Technology',
+      'Start-ups',
+    ]
   },
   {
-      title: 'Role',
-      options: [
-          'Software Engineering',
-          'Product',
-          'Analyst',
-          'Consultant',
-          'Account Management',
-          'Business & Strategy',
-          'Customer Success',
-          'Growth & Marketing',
-      ]
+    title: 'Role',
+    options: [
+      'Software Engineering',
+      'Product',
+      'Analyst',
+      'Consultant',
+      'Account Management',
+      'Business & Strategy',
+      'Customer Success',
+      'Growth & Marketing',
+    ]
   }
 ]
 
+interface Props {
+  setSelectedCompanies: (data: number[]) => void;
+  companyOptions: Option[];
+  // setSelectedIndustries: (data: string[]) => void;
+  // industryOptions: Option[];
+  // setSelectedRoles: (data: string[]) => void;
+  // roleOptions: Option[];
+  // setSelectedInterviewTypes: (data: string[]) => void;
+  // interviewTypeOptions: Option[];
+}
 
-const JobsBanner = () => {
+
+const JobsBanner = ({ setSelectedCompanies, companyOptions }: Props) => {
   return (
     <div className={styles.liner}>
       <div className={styles.title}>
         Jobs
       </div>
       <div className={styles.filterSection}>
-        {/* {InputSelectFilters.map((filter) => (
-          <InputSelectFilter key={filter.title} {...filter} />
-        ))} */}
+        <InputSelectFilter title="Company" options={companyOptions} setData={setSelectedCompanies} />
         {PracticeSelectFilters.map((filter) => (
           <MultiSelectFilter key={filter.title} {...filter} />
         ))}
