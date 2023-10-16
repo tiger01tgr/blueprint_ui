@@ -74,7 +74,7 @@ const EditProfileModal = ({ user }: Props) => {
                         <div className={styles.inputText}>
                             Email Address
                         </div>
-                        <input className={styles.longInput} placeholder='Email Address' defaultValue={user?.email} />
+                        <input className={styles.longInput} placeholder='Email Address' defaultValue={user?.email} disabled/>
                     </div>
                     <div className={styles.input}>
                         <div className={styles.inputText}>

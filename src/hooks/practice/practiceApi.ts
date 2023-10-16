@@ -1,5 +1,6 @@
 import { Question, QuestionSet, QuestionSetWithQuestions } from '../../utils/types/question'; 
 const parsePracticeSet = (practiceSet: any): QuestionSet => {
+    console.log(practiceSet)
     return {
         id: practiceSet.id,
         name: practiceSet.name,
@@ -15,7 +16,7 @@ const parsePracticeSet = (practiceSet: any): QuestionSet => {
 }
 
 export const getAllPracticeSets = async (): Promise<QuestionSet[]> => {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/practice/?query=all', {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/practice/?limit=40&page=1', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,8 +25,8 @@ export const getAllPracticeSets = async (): Promise<QuestionSet[]> => {
     if (!response.ok) throw new Error('Error occurred');
 
     const json = await response.json()
-    const practiceSets = [] as QuestionSet[]
-    json.map((practiceSet: any) => {
+    const practiceSets = json.data as QuestionSet[]
+    json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
     })
     return practiceSets;

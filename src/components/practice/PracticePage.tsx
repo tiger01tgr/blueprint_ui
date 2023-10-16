@@ -5,15 +5,20 @@ import PracticeBanner from './PracticeBanner/PracticeBanner'
 import usePractice from '@/hooks/practice/usePractice'
 import useCompanies from '@/hooks/company/useCompanies'
 import { Company } from '@/utils/types/company'
-import { Option } from '@/components/shared/dropdowns/filters/InputSelectFilter/InputSelectFilter'
-import { Pagination } from '@mantine/core';
+import { Option } from '@/utils/types/option'
+import { Pagination } from '@mantine/core'
 import styles from './page.module.css'
+import useIndustries from '@/hooks/industry/useIndustries'
+import { Industry } from '@/utils/types/industry'
 
 const PracticePage = () => {
+    const { allIndustries } = useIndustries()
     const { allPracticeSets } = usePractice()
     const { allCompanies } = useCompanies()
     const [selectedCompanies, setSelectedCompanies] = useState<number[]>([])
     const [companyOptions, setCompanyOptions] = useState<Option[]>([])
+    const [selectedIndustries, setSelectedIndustries] = useState<number[]>([])
+    const [industryOptions, setIndustryOptions] = useState<Option[]>([])
     const [activePage, setActivePage] = useState(1);
     //const [ practiceSets, setPracticeSets ] = useState<QuestionSet[]>([])
 
@@ -22,12 +27,12 @@ const PracticePage = () => {
     }, [activePage])
 
     useEffect(() => {
-
-    }, [allPracticeSets, selectedCompanies])
-
-    useEffect(() => {
         setCompanyOptions(getCompanyOptions(allCompanies))
     }, [allCompanies])
+
+    useEffect(() => {
+        setIndustryOptions(getIndustryOptions(allIndustries))
+    }, [allIndustries])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
         return companies.map((company) => {
@@ -38,9 +43,23 @@ const PracticePage = () => {
         })
     }
 
+    const getIndustryOptions = (industries: Industry[]): Option[] => {
+        return industries.map((industry) => {
+            return {
+                value: industry.id.toString(),
+                label: industry.name
+            }
+        })
+    }
+
     return (
         <div className={styles.liner}>
-            <PracticeBanner setSelectedCompanies={setSelectedCompanies} companyOptions={companyOptions} />
+            <PracticeBanner
+                setSelectedCompanies={setSelectedCompanies}
+                companyOptions={companyOptions}
+                industryOptions={industryOptions}
+                setSelectedIndustries={setSelectedIndustries}
+            />
             <InterviewsSection sets={allPracticeSets} />
             <div className={styles.pagination}>
                 <Pagination
