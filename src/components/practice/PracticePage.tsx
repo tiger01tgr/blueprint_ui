@@ -63,7 +63,7 @@ const PracticePage = () => {
         const interviewTypes = selectedInterviewTypes
 
         async function fetchData() {
-            const data = await getPracticeSetsByFilter({limit: interviewsLimit, page: activePage, companies, industries, roles, interviewTypes})
+            const data = await getPracticeSetsByFilter({limit: interviewsLimit, page: 1, companies, industries, roles, interviewTypes})
             if (data) {
                 setPracticeSets(data.sets)
                 setTotalPages(data.pages)

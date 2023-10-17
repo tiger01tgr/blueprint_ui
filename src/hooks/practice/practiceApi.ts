@@ -54,22 +54,31 @@ interface GetPracticeSetsWithFilterProps {
 }
 
 export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilterProps): Promise<QuestionSetAllData> => {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/practice/?query=filter&limit=${props.limit}&page=${props.page}`, {
+    let url = process.env.NEXT_PUBLIC_API_URL + `/practice/?query=filter&limit=${props.limit}&page=${props.page}`;
+
+    if (props.companies.length > 0) {
+        url += `&employers=${props.companies.join(',')}`;
+    }
+    if (props.industries.length > 0) {
+        url += `&industries=${props.industries.join(',')}`;
+    }
+    if (props.roles.length > 0) {
+        url += `&roles=${props.roles.join(',')}`;
+    }
+    if (props.interviewTypes.length > 0 && props.interviewTypes.length < 2) {
+        url += `&interviewTypes=${props.interviewTypes.join(',')}`;
+    }
+    
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            employers: props.companies,
-            industries: props.industries,
-            roles: props.roles,
-            interviewTypes: props.interviewTypes
-        })
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
     })
-    console.log(response)
     if (!response.ok) throw new Error('Error occurred');
 
     const json = await response.json()
+    console.log(json)
     const practiceSets = json.data as QuestionSet[]
     const pagination: QuestionSetPagination = json.pagination
     json.data.map((practiceSet: any) => {
