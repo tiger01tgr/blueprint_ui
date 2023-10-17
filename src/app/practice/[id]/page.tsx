@@ -10,7 +10,7 @@ import { QuestionSet, QuestionSetWithQuestions } from '@/utils/types/question'
 import Loading from '@/components/loading/Loading'
 
 export default function InterviewPage() {
-  const id = usePathname().replace("/practice/", "")
+  const id = usePathname().replace("/practice/", "").replace(/\//g, "")
   const [questionSet, setQuestionSet] = useState<QuestionSetWithQuestions>()
   const [width, setWidth] = useState(0)
   const { getQuestionSetWithQuestions } = usePractice()
