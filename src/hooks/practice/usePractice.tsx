@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getPracticeSets, getInterviewQuestions } from './practiceApi'
+import { getPracticeSets, getInterviewQuestions, getPracticeSetsWithFilter } from './practiceApi'
 import { QuestionSet, QuestionSetAllData, QuestionSetWithQuestions } from '@/utils/types/question'
 
 
@@ -13,12 +13,31 @@ interface GetPracticeSetsByPageReturn {
     pages: number;
 }
 
-const usePractice = () => {
+interface GetPracticeSetsByFilterProps {
+    limit: number;
+    page: number;
+    companies: number[];
+    industries: number[];
+    roles: number[];
+    interviewTypes: string[];
+}
 
-    const [practiceSetsByPage, setPracticeSetsByPage] = useState<GetPracticeSetsByPageReturn[]>([])
+interface GetPracticeSetsByFilterReturn {
+    sets: QuestionSet[];
+    pages: number;
+}
+
+const usePractice = () => {
 
     const getPracticeSetsByPage = async ({ limit, page }: GetPracticeSetsByPageProps): Promise<GetPracticeSetsByPageReturn | undefined> => {
         const data = await getPracticeSets({ limit, page })
+        const sets = data.practiceSets
+        const pages = data.pagination.totalPages
+        return { sets, pages }
+    }
+
+    const getPracticeSetsByFilter = async ({ limit, page, companies, industries, roles, interviewTypes }: GetPracticeSetsByFilterProps): Promise<GetPracticeSetsByFilterReturn | undefined> => {
+        const data = await getPracticeSetsWithFilter({ limit, page, companies, industries, roles, interviewTypes })
         const sets = data.practiceSets
         const pages = data.pagination.totalPages
         return { sets, pages }
@@ -30,7 +49,8 @@ const usePractice = () => {
 
     return {
         getPracticeSetsByPage,
-        getQuestionSetWithQuestions
+        getQuestionSetWithQuestions,
+        getPracticeSetsByFilter
     }
 }
 

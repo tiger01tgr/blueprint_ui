@@ -17,7 +17,7 @@ import { stringsToNumbers } from '@/utils/conversions'
 
 const PracticePage = () => {
     const { allIndustries } = useIndustries()
-    const { getPracticeSetsByPage } = usePractice()
+    const { getPracticeSetsByPage, getPracticeSetsByFilter } = usePractice()
     const { allCompanies } = useCompanies()
     const { allRoles } = useRoles()
     const [selectedCompanies, setSelectedCompanies] = useState<number[]>([])
@@ -31,10 +31,11 @@ const PracticePage = () => {
     const [totalPages, setTotalPages] = useState<number>(1)
     const [interviewTypeOptions, setInterviewTypeOptions] = useState<Option[]>([{value: 'Behavioral', label: 'Behavioral'}, {value: 'Technical', label: 'Technical'}])
     const [selectedInterviewTypes, setSelectedInterviewTypes] = useState<string[]>([])
+    const [interviewsLimit, setInterviewsLimit] = useState<number>(15)
 
     useEffect(() => {
         async function fetchQuestionData() {
-            const data = await getPracticeSetsByPage({limit: 15, page: activePage})
+            const data = await getPracticeSetsByPage({limit: interviewsLimit, page: activePage})
             if (data) {
                 setPracticeSets(data.sets)
                 setTotalPages(data.pages)
@@ -57,12 +58,18 @@ const PracticePage = () => {
 
     useEffect(() => {
         const companies = stringsToNumbers(selectedCompanies)
-        console.log(companies)
         const industries = stringsToNumbers(selectedIndustries)
-        console.log(industries)
         const roles = stringsToNumbers(selectedRoles)
-        console.log(roles)
-        console.log(selectedInterviewTypes)
+        const interviewTypes = selectedInterviewTypes
+
+        async function fetchData() {
+            const data = await getPracticeSetsByFilter({limit: interviewsLimit, page: activePage, companies, industries, roles, interviewTypes})
+            if (data) {
+                setPracticeSets(data.sets)
+                setTotalPages(data.pages)
+            }
+        }
+        fetchData()
     }, [selectedCompanies, selectedIndustries, selectedRoles, selectedInterviewTypes])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
