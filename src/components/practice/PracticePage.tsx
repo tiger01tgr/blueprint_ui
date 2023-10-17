@@ -13,13 +13,15 @@ import { Industry } from '@/utils/types/industry'
 import useRoles from '@/hooks/role/useRoles'
 import { Role } from '@/utils/types/role'
 import { QuestionSet } from '@/utils/types/question'
-import { stringsToNumbers } from '@/utils/conversions'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 const PracticePage = () => {
     const { allIndustries } = useIndustries()
     const { getPracticeSetsByPage, getPracticeSetsByFilter } = usePractice()
     const { allCompanies } = useCompanies()
     const { allRoles } = useRoles()
+    const router = useRouter()
+    const searchParams = useSearchParams()
     const [selectedCompanies, setSelectedCompanies] = useState<number[]>([])
     const [companyOptions, setCompanyOptions] = useState<Option[]>([])
     const [selectedIndustries, setSelectedIndustries] = useState<number[]>([])
@@ -34,15 +36,40 @@ const PracticePage = () => {
     const [interviewsLimit, setInterviewsLimit] = useState<number>(15)
 
     useEffect(() => {
+        const employers = searchParams.get('employers')
+        const industries = searchParams.get('industries')
+        const roles = searchParams.get('roles')
+        const interviewTypes = searchParams.get('interviewTypes')
         async function fetchQuestionData() {
-            const data = await getPracticeSetsByPage({limit: interviewsLimit, page: activePage})
-            if (data) {
-                setPracticeSets(data.sets)
-                setTotalPages(data.pages)
+            if (!employers && !industries && !roles && !interviewTypes) {
+                const data = await getPracticeSetsByPage({limit: interviewsLimit, page: activePage})
+                if (data) {
+                    setPracticeSets(data.sets)
+                    setTotalPages(data.pages)
+                }
+            } else {
+                let urlParams = `&limit=${interviewsLimit}&page=${activePage}`
+                if (employers) {
+                    urlParams += '&employers=' + employers
+                }
+                if (industries) {
+                    urlParams += '&industries=' + industries
+                }
+                if (roles) {
+                    urlParams += '&roles=' + roles
+                }
+                if (interviewTypes) {
+                    urlParams += '&interviewTypes=' + interviewTypes
+                }
+                const data = await getPracticeSetsByFilter({urlParams})
+                if (data) {
+                    setPracticeSets(data.sets)
+                    setTotalPages(data.pages)
+                }
             }
         }
         fetchQuestionData()
-    }, [activePage])
+    }, [searchParams])
 
     useEffect(() => {
         setCompanyOptions(getCompanyOptions(allCompanies))
@@ -57,20 +84,45 @@ const PracticePage = () => {
     }, [allRoles])
 
     useEffect(() => {
-        const companies = stringsToNumbers(selectedCompanies)
-        const industries = stringsToNumbers(selectedIndustries)
-        const roles = stringsToNumbers(selectedRoles)
-        const interviewTypes = selectedInterviewTypes
-
-        async function fetchData() {
-            const data = await getPracticeSetsByFilter({limit: interviewsLimit, page: 1, companies, industries, roles, interviewTypes})
-            if (data) {
-                setPracticeSets(data.sets)
-                setTotalPages(data.pages)
-            }
+        let addToUrl = ''
+        if (selectedCompanies.length > 0) {
+            addToUrl += '&employers='
+            selectedCompanies.forEach((company, index) => {
+                addToUrl += company
+                if (index < selectedCompanies.length - 1) {
+                    addToUrl += ',';
+                }
+            })
         }
-        fetchData()
-    }, [selectedCompanies, selectedIndustries, selectedRoles, selectedInterviewTypes])
+        if (selectedIndustries.length > 0) {
+            addToUrl += '&industries='
+            selectedIndustries.forEach((industry, index) => {
+                addToUrl += industry
+                if (index < selectedIndustries.length - 1) {
+                    addToUrl += ',';
+                }
+            })
+        }
+        if (selectedRoles.length > 0) {
+            addToUrl += '&roles='
+            selectedRoles.forEach((role, index) => {
+                addToUrl += role
+                if (index < selectedRoles.length - 1) {
+                    addToUrl += ',';
+                }
+            })
+        }
+        if (selectedInterviewTypes.length == 1) {
+            addToUrl += '&interviewTypes='
+            selectedInterviewTypes.forEach((interviewType, index) => {
+                addToUrl += interviewType
+                if (index < selectedInterviewTypes.length - 1) {
+                    addToUrl += ',';
+                }
+            })
+        }
+        router.push(`?limit=${interviewsLimit}&page=${activePage}` + addToUrl)
+    }, [activePage, selectedCompanies, selectedIndustries, selectedRoles, selectedInterviewTypes])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
         return companies.map((company) => {

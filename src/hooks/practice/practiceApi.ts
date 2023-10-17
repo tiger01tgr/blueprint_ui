@@ -33,10 +33,10 @@ export const getPracticeSets = async (props: GetPracticeSetsProps): Promise<Ques
             'Content-Type': 'application/json',
         },
     })
-    if (!response.ok) throw new Error('Error occurred');
+    if (!response.ok) throw new Error('Error occurred')
 
     const json = await response.json()
-    const practiceSets = json.data as QuestionSet[]
+    const practiceSets = [] as QuestionSet[]
     const pagination: QuestionSetPagination = json.pagination
     json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
@@ -45,30 +45,13 @@ export const getPracticeSets = async (props: GetPracticeSetsProps): Promise<Ques
 }
 
 interface GetPracticeSetsWithFilterProps {
-    limit: number;
-    page: number;
-    companies: number[];
-    industries: number[];
-    roles: number[];
-    interviewTypes: string[];
+    urlParams: string;
 }
 
 export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilterProps): Promise<QuestionSetAllData> => {
-    let url = process.env.NEXT_PUBLIC_API_URL + `/practice/?query=filter&limit=${props.limit}&page=${props.page}`;
+    let url = process.env.NEXT_PUBLIC_API_URL + '/practice/?query=filter' + props.urlParams
+    console.log(url)
 
-    if (props.companies.length > 0) {
-        url += `&employers=${props.companies.join(',')}`;
-    }
-    if (props.industries.length > 0) {
-        url += `&industries=${props.industries.join(',')}`;
-    }
-    if (props.roles.length > 0) {
-        url += `&roles=${props.roles.join(',')}`;
-    }
-    if (props.interviewTypes.length > 0 && props.interviewTypes.length < 2) {
-        url += `&interviewTypes=${props.interviewTypes.join(',')}`;
-    }
-    
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -79,11 +62,12 @@ export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilter
 
     const json = await response.json()
     console.log(json)
-    const practiceSets = json.data as QuestionSet[]
+    const practiceSets = [] as QuestionSet[]
     const pagination: QuestionSetPagination = json.pagination
     json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
     })
+    console.log(practiceSets)
     return {practiceSets, pagination};
 }
 

@@ -14,12 +14,7 @@ interface GetPracticeSetsByPageReturn {
 }
 
 interface GetPracticeSetsByFilterProps {
-    limit: number;
-    page: number;
-    companies: number[];
-    industries: number[];
-    roles: number[];
-    interviewTypes: string[];
+    urlParams: string;
 }
 
 interface GetPracticeSetsByFilterReturn {
@@ -36,8 +31,8 @@ const usePractice = () => {
         return { sets, pages }
     }
 
-    const getPracticeSetsByFilter = async ({ limit, page, companies, industries, roles, interviewTypes }: GetPracticeSetsByFilterProps): Promise<GetPracticeSetsByFilterReturn | undefined> => {
-        const data = await getPracticeSetsWithFilter({ limit, page, companies, industries, roles, interviewTypes })
+    const getPracticeSetsByFilter = async ({ urlParams }: GetPracticeSetsByFilterProps): Promise<GetPracticeSetsByFilterReturn | undefined> => {
+        const data = await getPracticeSetsWithFilter({ urlParams })
         const sets = data.practiceSets
         const pages = data.pagination.totalPages
         return { sets, pages }
