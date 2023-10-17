@@ -1,4 +1,11 @@
-import { Question, QuestionSet, QuestionSetWithQuestions } from '../../utils/types/question'; 
+import { 
+    Question,
+    QuestionSet,
+    QuestionSetAllData,
+    QuestionSetPagination, 
+    QuestionSetWithQuestions 
+} from '../../utils/types/question'
+
 const parsePracticeSet = (practiceSet: any): QuestionSet => {
     return {
         id: practiceSet.id,
@@ -14,22 +21,60 @@ const parsePracticeSet = (practiceSet: any): QuestionSet => {
     }
 }
 
-export const getAllPracticeSets = async (): Promise<QuestionSet[]> => {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/practice/?query=all', {
+interface GetPracticeSetsProps {
+    limit: number;
+    page: number;
+}
+
+export const getPracticeSets = async (props: GetPracticeSetsProps): Promise<QuestionSetAllData> => {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/practice/?limit=${props.limit}&page=${props.page}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-    });
+    })
+    if (!response.ok) throw new Error('Error occurred')
+
+    const json = await response.json()
+    const practiceSets = [] as QuestionSet[]
+    const pagination: QuestionSetPagination = json.pagination
+    json.data.map((practiceSet: any) => {
+        practiceSets.push(parsePracticeSet(practiceSet))
+    })
+    return {practiceSets, pagination};
+}
+
+interface GetPracticeSetsWithFilterProps {
+    urlParams: string;
+}
+
+export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilterProps): Promise<QuestionSetAllData> => {
+    let url = process.env.NEXT_PUBLIC_API_URL + '/practice/?query=filter' + props.urlParams
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }
+    })
     if (!response.ok) throw new Error('Error occurred');
 
     const json = await response.json()
     const practiceSets = [] as QuestionSet[]
-    json.map((practiceSet: any) => {
+    const pagination: QuestionSetPagination = json.pagination
+    json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
     })
-    return practiceSets;
+    return {practiceSets, pagination};
 }
+
+
+// body: JSON.stringify({
+//     employers: props.companies,
+//     industries: props.industries,
+//     roles: props.roles,
+//     interviewTypes: props.interviewTypes
+// })
 
 const parseQuestion = (question: any): Question => {
     return {
@@ -62,7 +107,7 @@ export const getInterviewQuestions = async (practiceSetId: string): Promise<Ques
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
+        }
     });
     if (!response.ok) throw new Error('Error occurred');
     return parseQuestionSetWithQuestions(await response.json());

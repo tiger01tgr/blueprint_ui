@@ -47,7 +47,7 @@ export const SignInWithButton = () => {
                 }
                 router.push('/profile')
             } catch (error) {
-                console.log('shit')
+                console.log('error')
             }
         }
     }

@@ -1,19 +1,16 @@
 'use client'
-import React, { useState, useEffect } from "react";
-import { MultiSelect } from '@mantine/core';
+import React, { useState, useEffect } from "react"
+import { MultiSelect } from '@mantine/core'
 import classes from './MultiSelectFilter.module.css'
+import { Option } from "@/utils/types/option"
 
 interface MultiSelectFilterSettings {
   title: string;
-  options: string[];
+  options: Option[];
+  setData: (data: any) => void;
 }
 
 const MultiSelectFilter = (props: MultiSelectFilterSettings) => {
-  const [value, setValue] = useState<string[]>([]);
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
 
   return (
     <MultiSelect
@@ -26,7 +23,7 @@ const MultiSelectFilter = (props: MultiSelectFilterSettings) => {
       }}
       label={props.title}
       data={props.options}
-      onChange={setValue}
+      onChange={props.setData}
       variant="standard"
       clearable={true}
     />

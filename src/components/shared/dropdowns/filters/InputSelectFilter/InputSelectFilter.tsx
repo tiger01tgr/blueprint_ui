@@ -2,16 +2,12 @@
 import React, { PropsWithChildren } from 'react'
 import { MultiSelect } from '@mantine/core'
 import classes from './InputSelectFilter.module.css'
+import { Option } from '@/utils/types/option'
 
 interface InputSelectFilterSettings {
   title: string;
   options: Option[];
   setData: (data: any) => void;
-}
-
-export interface Option {
-  value: string;
-  label: string;
 }
 
 const InputSelectFilter = (props: InputSelectFilterSettings) => {

@@ -23,3 +23,14 @@ export interface QuestionSet extends QuestionSetBase {
 export interface QuestionSetWithQuestions extends QuestionSetBase {
     questions: Question[];
 }
+
+export interface QuestionSetPagination {
+    totalPages: number;
+    currentPage: number;
+    limit: number;
+}
+
+export interface QuestionSetAllData {
+    practiceSets: QuestionSet[];
+    pagination: QuestionSetPagination;
+}

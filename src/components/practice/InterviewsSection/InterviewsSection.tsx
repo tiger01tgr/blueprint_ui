@@ -9,9 +9,9 @@ interface Props {
 const InterviewsSection: React.FC<Props> = ({ sets }) => {
     return (
         <div className={styles.liner}>
-            {sets.map((interview : QuestionSet) => (
+            {sets.map((interview : QuestionSet, index:  number) => (
                 <InterviewCard 
-                    key={interview.id} 
+                    key={index} 
                     id={interview.id} 
                     employerLogo={interview.logo} 
                     employerName={interview.employerName} 
