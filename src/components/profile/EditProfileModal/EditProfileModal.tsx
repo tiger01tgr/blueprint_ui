@@ -17,7 +17,7 @@ interface FormValues {
     school: string | undefined;
     major: string | undefined;
     phone: string | undefined;
-    highestDegree: string | undefined;
+    // highestDegree: string | undefined;
 }
 
 const EditProfileModal = ({ user }: Props) => {
@@ -42,7 +42,7 @@ const EditProfileModal = ({ user }: Props) => {
             email: user?.email,
             phone: user?.phone,
             resume: user?.resume,
-            highestDegree: user?.highestDegree
+            // highestDegree: user?.highestDegree
         },
     })
 
@@ -52,7 +52,6 @@ const EditProfileModal = ({ user }: Props) => {
 
     const onSubmit = (values: FormValues) => {
         // submit profile updates
-        console.log(values)
         console.log(file)
     }
 
@@ -109,7 +108,7 @@ const EditProfileModal = ({ user }: Props) => {
                                 />
                             </div>
                         </div>
-                        <div className={styles.nameSection}>
+                        {/* <div className={styles.nameSection}>
                             <div className={styles.input}>
                                 <div className={styles.inputText}>
                                     Highest Degree
@@ -139,7 +138,7 @@ const EditProfileModal = ({ user }: Props) => {
                                     onChange={setHighestDegree}
                                 />
                             </div>
-                        </div>
+                        </div> */}
                         <div className={styles.nameSection}>
                             <div className={styles.input}>
                                 <div className={styles.inputText}>

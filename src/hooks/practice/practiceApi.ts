@@ -50,7 +50,6 @@ interface GetPracticeSetsWithFilterProps {
 
 export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilterProps): Promise<QuestionSetAllData> => {
     let url = process.env.NEXT_PUBLIC_API_URL + '/practice/?query=filter' + props.urlParams
-    console.log(url)
 
     const response = await fetch(url, {
         method: 'GET',
@@ -61,13 +60,11 @@ export const getPracticeSetsWithFilter = async (props: GetPracticeSetsWithFilter
     if (!response.ok) throw new Error('Error occurred');
 
     const json = await response.json()
-    console.log(json)
     const practiceSets = [] as QuestionSet[]
     const pagination: QuestionSetPagination = json.pagination
     json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
     })
-    console.log(practiceSets)
     return {practiceSets, pagination};
 }
 

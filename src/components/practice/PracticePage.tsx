@@ -83,45 +83,29 @@ const PracticePage = () => {
         setRoleOptions(getRoleOptions(allRoles))
     }, [allRoles])
 
+    const addToUrl = (param: string, array: any[]) => {
+        let urlPart = ''
+        if (array.length > 0) {
+            urlPart += `&${param}=`
+            array.forEach((item, index) => {
+                urlPart += item;
+                if (index < array.length - 1) {
+                    urlPart += ','
+                }
+            })
+        }
+        return urlPart
+    }
+
     useEffect(() => {
-        let addToUrl = ''
-        if (selectedCompanies.length > 0) {
-            addToUrl += '&employers='
-            selectedCompanies.forEach((company, index) => {
-                addToUrl += company
-                if (index < selectedCompanies.length - 1) {
-                    addToUrl += ',';
-                }
-            })
+        let addToUrlString = ''
+        addToUrlString += addToUrl('employers', selectedCompanies)
+        addToUrlString += addToUrl('industries', selectedIndustries)
+        addToUrlString += addToUrl('roles', selectedRoles)
+        if (selectedInterviewTypes.length === 1) {
+            addToUrlString += addToUrl('interviewTypes', selectedInterviewTypes)
         }
-        if (selectedIndustries.length > 0) {
-            addToUrl += '&industries='
-            selectedIndustries.forEach((industry, index) => {
-                addToUrl += industry
-                if (index < selectedIndustries.length - 1) {
-                    addToUrl += ',';
-                }
-            })
-        }
-        if (selectedRoles.length > 0) {
-            addToUrl += '&roles='
-            selectedRoles.forEach((role, index) => {
-                addToUrl += role
-                if (index < selectedRoles.length - 1) {
-                    addToUrl += ',';
-                }
-            })
-        }
-        if (selectedInterviewTypes.length == 1) {
-            addToUrl += '&interviewTypes='
-            selectedInterviewTypes.forEach((interviewType, index) => {
-                addToUrl += interviewType
-                if (index < selectedInterviewTypes.length - 1) {
-                    addToUrl += ',';
-                }
-            })
-        }
-        router.push(`?limit=${interviewsLimit}&page=${activePage}` + addToUrl)
+        router.push(`?limit=${interviewsLimit}&page=${activePage}` + addToUrlString)
     }, [activePage, selectedCompanies, selectedIndustries, selectedRoles, selectedInterviewTypes])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
