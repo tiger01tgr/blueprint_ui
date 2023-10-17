@@ -1,6 +1,12 @@
-import { Question, QuestionSet, QuestionSetWithQuestions } from '../../utils/types/question'; 
+import { 
+    Question,
+    QuestionSet,
+    QuestionSetAllData,
+    QuestionSetPagination, 
+    QuestionSetWithQuestions 
+} from '../../utils/types/question'
+
 const parsePracticeSet = (practiceSet: any): QuestionSet => {
-    console.log(practiceSet)
     return {
         id: practiceSet.id,
         name: practiceSet.name,
@@ -15,8 +21,13 @@ const parsePracticeSet = (practiceSet: any): QuestionSet => {
     }
 }
 
-export const getAllPracticeSets = async (): Promise<QuestionSet[]> => {
-    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/practice/?limit=40&page=1', {
+interface GetPracticeSetsProps {
+    limit: number;
+    page: number;
+}
+
+export const getPracticeSets = async (props: GetPracticeSetsProps): Promise<QuestionSetAllData> => {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `/practice/?limit=${props.limit}&page=${props.page}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -26,10 +37,11 @@ export const getAllPracticeSets = async (): Promise<QuestionSet[]> => {
 
     const json = await response.json()
     const practiceSets = json.data as QuestionSet[]
+    const pagination: QuestionSetPagination = json.pagination
     json.data.map((practiceSet: any) => {
         practiceSets.push(parsePracticeSet(practiceSet))
     })
-    return practiceSets;
+    return {practiceSets, pagination};
 }
 
 const parseQuestion = (question: any): Question => {

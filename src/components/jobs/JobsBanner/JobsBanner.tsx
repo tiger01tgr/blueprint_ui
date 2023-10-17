@@ -8,12 +8,19 @@ interface Props {
   companyOptions: Option[];
   setSelectedIndustries: (data: number[]) => void;
   industryOptions: Option[];
-  // setSelectedRoles: (data: string[]) => void;
-  // roleOptions: Option[];
+  setSelectedRoles: (data: number[]) => void;
+  roleOptions: Option[];
 }
 
 
-const JobsBanner = ({ setSelectedCompanies, companyOptions, setSelectedIndustries, industryOptions }: Props) => {
+const JobsBanner = ({ 
+  setSelectedCompanies, 
+  companyOptions, 
+  setSelectedIndustries, 
+  industryOptions, 
+  setSelectedRoles, 
+  roleOptions
+ }: Props) => {
   return (
     <div className={styles.liner}>
       <div className={styles.title}>
@@ -22,6 +29,7 @@ const JobsBanner = ({ setSelectedCompanies, companyOptions, setSelectedIndustrie
       <div className={styles.filterSection}>
         <InputSelectFilter title="Company" options={companyOptions} setData={setSelectedCompanies} />
         <MultiSelectFilter title="Industry" options={industryOptions} setData={setSelectedIndustries} />
+        <MultiSelectFilter title="Role" options={roleOptions} setData={setSelectedRoles} />
       </div>
     </div>
   )

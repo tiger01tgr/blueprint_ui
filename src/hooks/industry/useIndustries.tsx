@@ -20,4 +20,5 @@ const useIndustries = () => {
         allIndustries: industries,
     }
 }
+
 export default useIndustries

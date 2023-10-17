@@ -10,20 +10,34 @@ import { Pagination } from '@mantine/core'
 import styles from './page.module.css'
 import useIndustries from '@/hooks/industry/useIndustries'
 import { Industry } from '@/utils/types/industry'
+import useRoles from '@/hooks/role/useRoles'
+import { Role } from '@/utils/types/role'
+import { QuestionSet } from '@/utils/types/question'
 
 const PracticePage = () => {
     const { allIndustries } = useIndustries()
-    const { allPracticeSets } = usePractice()
+    const { getPracticeSetsByPage } = usePractice()
     const { allCompanies } = useCompanies()
+    const { allRoles } = useRoles()
     const [selectedCompanies, setSelectedCompanies] = useState<number[]>([])
     const [companyOptions, setCompanyOptions] = useState<Option[]>([])
     const [selectedIndustries, setSelectedIndustries] = useState<number[]>([])
     const [industryOptions, setIndustryOptions] = useState<Option[]>([])
-    const [activePage, setActivePage] = useState(1);
-    //const [ practiceSets, setPracticeSets ] = useState<QuestionSet[]>([])
+    const [activePage, setActivePage] = useState(1)
+    const [selectedRoles, setSelectedRoles] = useState<number[]>([])
+    const [roleOptions, setRoleOptions] = useState<Option[]>([])
+    const [practiceSets, setPracticeSets ] = useState<QuestionSet[]>([])
+    const [totalPages, setTotalPages] = useState<number>(1)
 
     useEffect(() => {
-        console.log(activePage)
+        async function fetchQuestionData() {
+            const data = await getPracticeSetsByPage({limit: 15, page: activePage})
+            if (data) {
+                setPracticeSets(data.sets)
+                setTotalPages(data.pages)
+            }
+        }
+        fetchQuestionData()
     }, [activePage])
 
     useEffect(() => {
@@ -33,6 +47,10 @@ const PracticePage = () => {
     useEffect(() => {
         setIndustryOptions(getIndustryOptions(allIndustries))
     }, [allIndustries])
+
+    useEffect(() => {
+        setRoleOptions(getRoleOptions(allRoles))
+    }, [allRoles])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
         return companies.map((company) => {
@@ -52,6 +70,15 @@ const PracticePage = () => {
         })
     }
 
+    const getRoleOptions = (roles: Role[]): Option[] => {
+        return roles.map((role) => {
+            return {
+                value: role.id.toString(),
+                label: role.name
+            }
+        })
+    }
+
     return (
         <div className={styles.liner}>
             <PracticeBanner
@@ -59,11 +86,13 @@ const PracticePage = () => {
                 companyOptions={companyOptions}
                 industryOptions={industryOptions}
                 setSelectedIndustries={setSelectedIndustries}
+                setSelectedRoles={setSelectedRoles}
+                roleOptions={roleOptions}
             />
-            <InterviewsSection sets={allPracticeSets} />
+            <InterviewsSection sets={practiceSets} />
             <div className={styles.pagination}>
                 <Pagination
-                    total={10}
+                    total={totalPages}
                     classNames={{
                         root: styles.paginationRoot,
                         control: styles.paginationControl,

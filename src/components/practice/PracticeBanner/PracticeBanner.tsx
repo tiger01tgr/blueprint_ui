@@ -9,14 +9,21 @@ interface Props {
     companyOptions: Option[];
     setSelectedIndustries: (data: number[]) => void;
     industryOptions: Option[];
-    // setSelectedRoles: (data: string[]) => void;
-    // roleOptions: Option[];
+    setSelectedRoles: (data: number[]) => void;
+    roleOptions: Option[];
     // setSelectedInterviewTypes: (data: string[]) => void;
     // interviewTypeOptions: Option[];
 }
 // setSelectedIndustries, industryOptions, setSelectedRoles, roleOptions, setSelectedIndustries, interviewTypeOptions
 
-const PracticeBanner: React.FC<Props> = ({ setSelectedCompanies, companyOptions, industryOptions, setSelectedIndustries }) => {
+const PracticeBanner: React.FC<Props> = ({
+    setSelectedCompanies,
+    companyOptions, 
+    industryOptions, 
+    setSelectedIndustries,
+    setSelectedRoles,
+    roleOptions
+ }) => {
 
     return (
         <div className={styles.liner}>
@@ -26,6 +33,7 @@ const PracticeBanner: React.FC<Props> = ({ setSelectedCompanies, companyOptions,
             <div className={styles.filterSection}>
                 <InputSelectFilter title="Company" options={companyOptions} setData={setSelectedCompanies} />
                 <MultiSelectFilter title="Industry" options={industryOptions} setData={setSelectedIndustries} />
+                <MultiSelectFilter title="Role" options={roleOptions} setData={setSelectedRoles} />
             </div>
         </div>
     )
