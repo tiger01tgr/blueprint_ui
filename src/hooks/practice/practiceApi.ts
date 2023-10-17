@@ -24,6 +24,10 @@ const parsePracticeSet = (practiceSet: any): QuestionSet => {
 interface GetPracticeSetsProps {
     limit: number;
     page: number;
+    companies?: number[];
+    industries?: number[];
+    roles?: number[];
+    interviewTypes?: string[];
 }
 
 export const getPracticeSets = async (props: GetPracticeSetsProps): Promise<QuestionSetAllData> => {

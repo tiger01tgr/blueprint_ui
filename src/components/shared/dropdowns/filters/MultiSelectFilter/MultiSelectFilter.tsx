@@ -11,11 +11,6 @@ interface MultiSelectFilterSettings {
 }
 
 const MultiSelectFilter = (props: MultiSelectFilterSettings) => {
-  const [value, setValue] = useState<string[]>([]);
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
 
   return (
     <MultiSelect
@@ -28,7 +23,7 @@ const MultiSelectFilter = (props: MultiSelectFilterSettings) => {
       }}
       label={props.title}
       data={props.options}
-      onChange={setValue}
+      onChange={props.setData}
       variant="standard"
       clearable={true}
     />

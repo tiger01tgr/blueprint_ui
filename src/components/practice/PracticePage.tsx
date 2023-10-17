@@ -13,6 +13,7 @@ import { Industry } from '@/utils/types/industry'
 import useRoles from '@/hooks/role/useRoles'
 import { Role } from '@/utils/types/role'
 import { QuestionSet } from '@/utils/types/question'
+import { stringsToNumbers } from '@/utils/conversions'
 
 const PracticePage = () => {
     const { allIndustries } = useIndustries()
@@ -26,8 +27,10 @@ const PracticePage = () => {
     const [activePage, setActivePage] = useState(1)
     const [selectedRoles, setSelectedRoles] = useState<number[]>([])
     const [roleOptions, setRoleOptions] = useState<Option[]>([])
-    const [practiceSets, setPracticeSets ] = useState<QuestionSet[]>([])
+    const [practiceSets, setPracticeSets] = useState<QuestionSet[]>([])
     const [totalPages, setTotalPages] = useState<number>(1)
+    const [interviewTypeOptions, setInterviewTypeOptions] = useState<Option[]>([{value: 'Behavioral', label: 'Behavioral'}, {value: 'Technical', label: 'Technical'}])
+    const [selectedInterviewTypes, setSelectedInterviewTypes] = useState<string[]>([])
 
     useEffect(() => {
         async function fetchQuestionData() {
@@ -51,6 +54,16 @@ const PracticePage = () => {
     useEffect(() => {
         setRoleOptions(getRoleOptions(allRoles))
     }, [allRoles])
+
+    useEffect(() => {
+        const companies = stringsToNumbers(selectedCompanies)
+        console.log(companies)
+        const industries = stringsToNumbers(selectedIndustries)
+        console.log(industries)
+        const roles = stringsToNumbers(selectedRoles)
+        console.log(roles)
+        console.log(selectedInterviewTypes)
+    }, [selectedCompanies, selectedIndustries, selectedRoles, selectedInterviewTypes])
 
     const getCompanyOptions = (companies: Company[]): Option[] => {
         return companies.map((company) => {
@@ -88,6 +101,8 @@ const PracticePage = () => {
                 setSelectedIndustries={setSelectedIndustries}
                 setSelectedRoles={setSelectedRoles}
                 roleOptions={roleOptions}
+                setSelectedInterviewTypes={setSelectedInterviewTypes}
+                interviewTypeOptions={interviewTypeOptions}
             />
             <InterviewsSection sets={practiceSets} />
             <div className={styles.pagination}>
