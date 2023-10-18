@@ -4,6 +4,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { useForm } from '@mantine/form'
 import { Modal, Select } from '@mantine/core'
 import styles from './EditProfileModal.module.css'
+import { User } from '@/utils/types/user'
 
 interface Props {
     user: User | null;
@@ -33,11 +34,11 @@ const EditProfileModal = ({ user }: Props) => {
 
     const form = useForm({
         initialValues: {
-            firstName: user?.firstName,
-            lastName: user?.lastName,
+            firstName: user?.first_name,
+            lastName: user?.last_name,
             school: user?.school,
             major: user?.major,
-            company: user?.company,
+            company: user?.employer,
             position: user?.position,
             email: user?.email,
             phone: user?.phone,
@@ -68,7 +69,7 @@ const EditProfileModal = ({ user }: Props) => {
                                 <input
                                     className={styles.shortInput}
                                     placeholder='First Name'
-                                    defaultValue={user?.firstName}
+                                    defaultValue={user?.first_name}
                                     onChange={(event) => form.setFieldValue('firstName', event.currentTarget.value)}
                                 />
                             </div>
@@ -79,7 +80,7 @@ const EditProfileModal = ({ user }: Props) => {
                                 <input
                                     className={styles.shortInput}
                                     placeholder='Last Name'
-                                    defaultValue={user?.lastName}
+                                    defaultValue={user?.last_name}
                                     onChange={(event) => form.setFieldValue('lastName', event.currentTarget.value)}
                                 />
                             </div>
@@ -147,7 +148,7 @@ const EditProfileModal = ({ user }: Props) => {
                                 <input
                                     className={styles.shortInput}
                                     placeholder='Employer'
-                                    defaultValue={user?.company}
+                                    defaultValue={user?.employer}
                                     onChange={(event) => form.setFieldValue('company', event.currentTarget.value)}
                                 />
                             </div>

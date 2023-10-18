@@ -14,7 +14,7 @@ const InterviewFeedback = ({ feedbackSet }: Props) => {
             </div>
             {!feedbackSet
                 ?
-                <Link href='/practice' className={styles.practiceMore}>Practice some inteviews!</Link>
+                <Link href='/practice' className={styles.practiceMore}>Practice some interviews!</Link>
                 :
                 <div className={styles.feedbackGrid}>
                     {feedbackSet.map((feedback, index) => (

@@ -7,7 +7,7 @@ export const createUserAccount = async (email: string, firstName: string, lastNa
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + token,
         },
-    });
+    })
     if (!response.ok) return new Error('Error occurred');
     return null;
 };
