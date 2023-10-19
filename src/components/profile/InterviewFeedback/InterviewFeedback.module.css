@@ -28,6 +28,7 @@
     font-size: 19px;
     font-weight: 600;
     color: var(--sapphire);
+    align-self: center;
 }
 
 .feedbackGrid {

@@ -92,7 +92,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 35%;
     height: 40px;
     border-radius: 5px;
     background-color: var(--sapphire);
@@ -121,4 +121,26 @@
 .loginLink {
     color: var(--sapphire);
     font-weight: 700;
+}
+
+.buttonSection {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 30px;
+    justify-content: center;
+}
+
+.closeButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--gray60);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
 }

@@ -54,6 +54,7 @@ const EditProfileModal = ({ user }: Props) => {
     const onSubmit = (values: FormValues) => {
         // submit profile updates
         console.log(file)
+        console.log(values)
     }
 
     return (
@@ -196,9 +197,14 @@ const EditProfileModal = ({ user }: Props) => {
                                 onChange={handleFileChange}
                             />
                         </div>
-                        <button className={styles.saveButton} type='submit'>
-                            Save
-                        </button>
+                        <div className={styles.buttonSection}>
+                            <button className={styles.saveButton} type='submit'>
+                                Save
+                            </button>
+                            <button className={styles.closeButton} onClick={close}>
+                                Cancel
+                            </button>
+                        </div>
                     </div>
                 </form>
             </Modal>
