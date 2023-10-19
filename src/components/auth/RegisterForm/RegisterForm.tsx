@@ -35,9 +35,11 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
     const router = useRouter()
     const [type, toggle] = useToggle(['register', 'login'])
     const [loginFailed, setLoginFailed] = useState(false)
+    const [accountExistsError, setAccountExistsError] = useState(false)
 
     const handleCloseAlert = () => {
         setLoginFailed(false)
+        setAccountExistsError(false)
     }
 
     const form = useForm({
@@ -74,9 +76,13 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
             case 'register':
                 RegisterWithEmailPassword(values.email, values.password, values.firstname, values.lastname)
                     .then((error) => {
-                        console.log(error)
                         if (error === null && redirectToProfile) {
                             router.push('/profile')
+                        }
+                        if (error) {
+                            if (error.message.includes('error creating user')) {
+                                setAccountExistsError(true)
+                            }
                         }
                     })
                     .catch((error) => {
@@ -93,6 +99,12 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
             {loginFailed ?
                 <Alert title="Login Failed" color="red" withCloseButton onClose={handleCloseAlert}>
                     Please try logging in again.
+                </Alert> :
+                <div />
+            }
+            {accountExistsError ?
+                <Alert title="Account Already Exists" color="red" withCloseButton onClose={handleCloseAlert}>
+                    Account already exists. Please try logging in with Google or the form.
                 </Alert> :
                 <div />
             }
@@ -170,7 +182,7 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
 
             <Divider label="Or continue with" labelPosition="center" my="lg" />
             <SignInWithButton redirectToProfile={redirectToProfile} />
-   
+
         </Paper>
     )
 }

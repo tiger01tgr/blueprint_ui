@@ -40,7 +40,6 @@ const useAuth = () => {
         email = email.trim()
         firstName = firstName.trim()
         lastName = lastName.trim()
-        // TODO: if user tries to register with an email that already exists, right now nothing happens -> we should show an error toast
         const user = await createUserWithEmailAndPassword(email, password)
             .catch((error) => {
                 console.log(error)
