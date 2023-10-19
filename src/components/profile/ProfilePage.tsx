@@ -17,14 +17,12 @@ const ProfilePage = () => {
         async function getUserData() {
             if (authLoading) return
             const token = await getBearerToken()
-            console.log(token)
             if (token) {
                 const user = await getProfile(token)
                 if (user) {
                     setCurrentUser(user)
                 }
             } else {
-                console.log(token)
                 window.location.href='/register'
             }
         }
