@@ -16,7 +16,11 @@ export interface SocialIcon {
 }
 
 
-export const SignInWithButton = () => {
+interface Props {
+    redirectToProfile: boolean
+}
+
+export const SignInWithButton = ({redirectToProfile}: Props) => {
     const router = useRouter()
     const { getBearerToken } = useAuth()
     const [signInWithGoogle, loading, error] = useSignInWithGoogle(auth)
@@ -45,7 +49,9 @@ export const SignInWithButton = () => {
                 if (!user) { 
                     await createUserAccount(email, firstName, lastName, middleName, token)
                 }
-                router.push('/profile')
+                if (redirectToProfile) {
+                    router.push('/profile')
+                }
             } catch (error) {
                 console.log('error')
             }

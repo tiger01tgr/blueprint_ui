@@ -10,9 +10,10 @@ import Loading from '@/components/loading/Loading'
 
 interface Props {
     user: User | null;
+    setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const InformationSection = ({ user }: Props) => {
+const InformationSection = ({ user, setCurrentUser }: Props) => {
     const { Logout } = useAuth()
 
     if (!user) {
@@ -115,7 +116,7 @@ const InformationSection = ({ user }: Props) => {
                 </div>
             </div>
             <div className={styles.buttonSection}>
-                <EditProfileModal user={user}/>
+                <EditProfileModal user={user} setCurrentUser={setCurrentUser} />
                 <button className={styles.button} onClick={handleLogout}>
                     Sign Out
                 </button>

@@ -6,7 +6,7 @@ import styles from './page.module.css';
 const RegisterPage = () => {
     return (
         <div className={styles.liner}>
-            <RegisterForm />
+            <RegisterForm redirectToProfile={true} />
         </div>
     )
 }

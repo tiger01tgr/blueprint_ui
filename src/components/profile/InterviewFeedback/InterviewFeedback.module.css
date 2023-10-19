@@ -1,15 +1,13 @@
 .liner {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     width: 70vw;
     padding: 20px;
-    outline: 0.3px solid var(--lightGray);
+    border: 0.3px solid var(--lightGray);
+    align-items: center;
 
     @media (max-width: 540px) {
-        margin-top: 30px;
         position: relative;
-        left: -35px;
         width: 100vw;
         align-items: center;
     }
@@ -28,7 +26,13 @@
     font-size: 19px;
     font-weight: 600;
     color: var(--sapphire);
-    align-self: center;
+}
+
+.practiceLiner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
 }
 
 .feedbackGrid {

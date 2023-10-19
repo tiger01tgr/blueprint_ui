@@ -5,26 +5,31 @@ import { useForm } from '@mantine/form'
 import { Modal, Select } from '@mantine/core'
 import styles from './EditProfileModal.module.css'
 import { User } from '@/utils/types/user'
+import useUser from '@/hooks/user/useUser'
+import useAuth from '@/hooks/auth/useAuth'
 
 interface Props {
     user: User | null;
+    setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
 interface FormValues {
-    firstName: string | undefined;
-    lastName: string | undefined;
+    first_name: string | undefined;
+    last_name: string | undefined;
     position: string | undefined;
-    company: string | undefined;
+    employer: string | undefined;
     school: string | undefined;
     major: string | undefined;
     phone: string | undefined;
     // highestDegree: string | undefined;
 }
 
-const EditProfileModal = ({ user }: Props) => {
+const EditProfileModal = ({ user, setCurrentUser }: Props) => {
     const [opened, { open, close }] = useDisclosure(false)
-    const [file, setFile] = useState<File>()
+    const [file, setFile] = useState<File | null>(null)
     const [highestDegree, setHighestDegree] = useState<string | null>('')
+    const { updateProfile, getProfile } = useUser()
+    const { getBearerToken } = useAuth()
 
     useEffect(() => {
         if (highestDegree) {
@@ -34,11 +39,11 @@ const EditProfileModal = ({ user }: Props) => {
 
     const form = useForm({
         initialValues: {
-            firstName: user?.first_name,
-            lastName: user?.last_name,
+            first_name: user?.first_name,
+            last_name: user?.last_name,
             school: user?.school,
             major: user?.major,
-            company: user?.employer,
+            employer: user?.employer,
             position: user?.position,
             email: user?.email,
             phone: user?.phone,
@@ -51,10 +56,25 @@ const EditProfileModal = ({ user }: Props) => {
         setFile(event.target.files[0])
     }
 
-    const onSubmit = (values: FormValues) => {
-        // submit profile updates
-        console.log(file)
-        console.log(values)
+    const onSubmit = async (values: FormValues) => {
+        const token = await getBearerToken()
+        if (token && user) {
+            await updateProfile(
+                token,
+                values.first_name || '',
+                values.last_name || '',
+                values.position || '',
+                values.employer || '',
+                values.school || '',
+                values.major || '',
+                values.phone || '',
+                file,
+                user
+            )
+            const currentUser = await getProfile(token)
+            setCurrentUser(currentUser)
+        }
+        close()
     }
 
     return (
@@ -150,7 +170,7 @@ const EditProfileModal = ({ user }: Props) => {
                                     className={styles.shortInput}
                                     placeholder='Employer'
                                     defaultValue={user?.employer}
-                                    onChange={(event) => form.setFieldValue('company', event.currentTarget.value)}
+                                    onChange={(event) => form.setFieldValue('employer', event.currentTarget.value)}
                                 />
                             </div>
                             <div className={styles.input}>

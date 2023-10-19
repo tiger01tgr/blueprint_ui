@@ -21,13 +21,15 @@ const ProfilePage = () => {
                 if (user) {
                     setCurrentUser(user)
                 }
+            } else {
+                window.location.href='/register'
             }
         }
         getUserData()
     }, [authObj])
 
     const renderUserInfo = useCallback(() => (
-        <InformationSection user={currentUser} />
+        <InformationSection user={currentUser} setCurrentUser={setCurrentUser}/>
     ), [currentUser])
 
     const renderInterviewFeedback = useCallback(() => (

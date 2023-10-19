@@ -49,7 +49,7 @@ const NavMenu = ({ buttonData }: NavMenuProps) => {
                 <Menu.Divider />
 
                 <Menu.Item>
-                    <Link href={`${buttonData.link}`} className={classes.buttonLiner}>
+                    <Link href={`/${buttonData.link}`} className={classes.buttonLiner}>
                         <div className={classes.button}>
                             {buttonData.name}
                         </div>
