@@ -1,5 +1,6 @@
 import { 
     useAuthState,
+    useCreateUserWithEmailAndPassword
 } from 'react-firebase-hooks/auth';
 import { app } from '../../config/firebase'
 import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -9,6 +10,7 @@ import { createUserAccount, getMe } from './authApi';
 const useAuth = () => {
 
     const [authObj, authLoading] = useAuthState(getAuth(app));
+    const [ createUserWithEmailAndPassword, user, loading, error ] = useCreateUserWithEmailAndPassword(getAuth(app))
 
     const getAuthState = () => {
         return getAuth(app)
@@ -38,35 +40,21 @@ const useAuth = () => {
         email = email.trim()
         firstName = firstName.trim()
         lastName = lastName.trim()
-    
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(async (userCredential) => {
-                // Signed up 
-                createUserAccount(email, firstName, lastName, "", await userCredential.user.getIdToken(true))
-                    .then((response) => {
-                        return null
-                    })
-                    .catch((error) => {
-                        // need actual handling, perhaps retries
-                        console.log('error creating user account')
-                        return error
-                    })
-            })
+        // TODO: if user tries to register with an email that already exists, right now nothing happens -> we should show an error toast
+        const user = await createUserWithEmailAndPassword(email, password)
             .catch((error) => {
-                // need actual handling here too
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage)
-                // ..
-                return errorMessage
+                console.log(error)
+                return error
             })
+        if (!user) return new Error("error creating user")
+        const error = await createUserAccount(user.user.email, firstName, lastName, "", await user.user.getIdToken(true))
         return null
     }
 
-    const getBearerToken  = () => {
+    const getBearerToken  = async () => {
         const auth = getAuthState()
         if (!auth || !auth.currentUser) return ""
-        return auth.currentUser?.getIdToken(true)
+        return await auth.currentUser?.getIdToken(true)
     }
 
     const Logout = async () => {
@@ -78,6 +66,7 @@ const useAuth = () => {
     return (
         {
             authObj,
+            authLoading,
             getBearerToken,
             LoginWithEmailPassword,
             RegisterWithEmailPassword,

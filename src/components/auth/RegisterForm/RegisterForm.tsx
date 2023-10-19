@@ -74,6 +74,7 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
             case 'register':
                 RegisterWithEmailPassword(values.email, values.password, values.firstname, values.lastname)
                     .then((error) => {
+                        console.log(error)
                         if (error === null && redirectToProfile) {
                             router.push('/profile')
                         }
@@ -99,7 +100,10 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
                 Welcome to bluprint!
             </Text> */}
 
-            <form onSubmit={form.onSubmit(onSubmit)}>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                onSubmit(form.values)
+            }}>
                 <Stack>
                     {type === 'register' && (
                         <Stack>

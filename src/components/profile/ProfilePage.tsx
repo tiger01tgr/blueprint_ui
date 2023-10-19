@@ -10,11 +10,12 @@ import useAuth from '@/hooks/auth/useAuth'
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
     const [userFeedback, setUserFeedback] = useState<FeedbackSet[] | null>(null)
-    const { getBearerToken, authObj } = useAuth()
+    const { getBearerToken, authLoading } = useAuth()
     const { getProfile } = useUser()
 
     useEffect(() => {
         async function getUserData() {
+            if (authLoading) return
             const token = await getBearerToken()
             if (token) {
                 const user = await getProfile(token)
@@ -26,7 +27,7 @@ const ProfilePage = () => {
             }
         }
         getUserData()
-    }, [authObj])
+    }, [authLoading])
 
     const renderUserInfo = useCallback(() => (
         <InformationSection user={currentUser} setCurrentUser={setCurrentUser}/>
