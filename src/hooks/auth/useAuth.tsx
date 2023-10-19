@@ -46,6 +46,7 @@ const useAuth = () => {
                 console.log(error)
                 return error
             })
+
         if (!user) return new Error("error creating user")
         const error = await createUserAccount(user.user.email, firstName, lastName, "", await user.user.getIdToken(true))
         return null
