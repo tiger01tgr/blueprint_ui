@@ -31,6 +31,9 @@ export const updateUserProfile = async (token: string, first_name: string, last_
             }
         }
     }
+    if (!url.endsWith('&')) {
+        url += '&'
+    }
     if (resume) {
         url += `isResumeUpdate=true`
     } else {
