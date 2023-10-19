@@ -21,7 +21,7 @@ export const updateUserProfile = async (token: string, first_name: string, last_
 
     // build url
     const fields = ['firstname', 'lastname', 'position', 'employer', 'school', 'major', 'phone']
-    const values = ['', last_name, position, employer, school, major, phone]
+    const values = [first_name, last_name, position, employer, school, major, phone]
 
     for (let i = 0; i < fields.length; i++) {
         if (values[i] && values[i].length > 0) {
@@ -41,7 +41,6 @@ export const updateUserProfile = async (token: string, first_name: string, last_
     if (resume) {
         formData.append('resume', resume)
     }
-
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {

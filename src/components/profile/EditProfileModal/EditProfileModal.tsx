@@ -14,8 +14,8 @@ interface Props {
 }
 
 interface FormValues {
-    first_name: string | undefined;
-    last_name: string | undefined;
+    firstName: string | undefined;
+    lastName: string | undefined;
     position: string | undefined;
     employer: string | undefined;
     school: string | undefined;
@@ -39,8 +39,8 @@ const EditProfileModal = ({ user, setCurrentUser }: Props) => {
 
     const form = useForm({
         initialValues: {
-            first_name: user?.first_name,
-            last_name: user?.last_name,
+            firstName: user?.first_name,
+            lastName: user?.last_name,
             school: user?.school,
             major: user?.major,
             employer: user?.employer,
@@ -61,8 +61,8 @@ const EditProfileModal = ({ user, setCurrentUser }: Props) => {
         if (token && user) {
             await updateProfile(
                 token,
-                values.first_name || '',
-                values.last_name || '',
+                values.firstName || '',
+                values.lastName || '',
                 values.position || '',
                 values.employer || '',
                 values.school || '',
