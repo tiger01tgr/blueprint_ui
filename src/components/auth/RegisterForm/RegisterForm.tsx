@@ -18,7 +18,6 @@ import { useRouter } from 'next/navigation';
 import { Alert } from '@mantine/core';
 import { useState } from 'react';
 
-
 type FormValues = {
     email: string;
     password: string;
@@ -27,7 +26,11 @@ type FormValues = {
     terms: boolean;
 }
 
-const RegisterForm = () => {
+interface Props {
+    redirectToProfile: boolean
+}
+
+const RegisterForm = ({ redirectToProfile }: Props) => {
     const { LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
     const router = useRouter()
     const [type, toggle] = useToggle(['register', 'login'])
@@ -58,7 +61,7 @@ const RegisterForm = () => {
             case 'login':
                 LoginWithEmailPassword(values.email, values.password)
                     .then((error) => {
-                        if (error === null) {
+                        if (error === null && redirectToProfile) {
                             router.push('/profile')
                         }
                     })
@@ -71,7 +74,7 @@ const RegisterForm = () => {
             case 'register':
                 RegisterWithEmailPassword(values.email, values.password, values.firstname, values.lastname)
                     .then((error) => {
-                        if (error === null) {
+                        if (error === null && redirectToProfile) {
                             router.push('/profile')
                         }
                     })
@@ -162,7 +165,7 @@ const RegisterForm = () => {
             </form>
 
             <Divider label="Or continue with" labelPosition="center" my="lg" />
-            <SignInWithButton />
+            <SignInWithButton redirectToProfile={redirectToProfile} />
    
         </Paper>
     )

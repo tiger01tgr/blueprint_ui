@@ -5,18 +5,21 @@ import { AiOutlineFilePdf, AiOutlinePhone } from 'react-icons/ai'
 import Link from 'next/link'
 import EditProfileModal from '../EditProfileModal/EditProfileModal'
 import useAuth from '@/hooks/auth/useAuth'
+import { User } from '@/utils/types/user'
+import Loading from '@/components/loading/Loading'
 
 interface Props {
     user: User | null;
+    setCurrentUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const InformationSection = ({ user }: Props) => {
+const InformationSection = ({ user, setCurrentUser }: Props) => {
     const { Logout } = useAuth()
 
     if (!user) {
         return (
             <div className={styles.liner}>
-                loading...
+                <Loading />
             </div>
         )
     }
@@ -31,11 +34,11 @@ const InformationSection = ({ user }: Props) => {
         <div className={styles.liner}>
             <div className={styles.basicInfo}>
                 <div className={styles.avatar}>
-                    {user.firstName[0]}{user.lastName[0]}
+                    {user.first_name[0]}{user.last_name[0]}
                 </div>
                 <div className={styles.text}>
                     <div className={styles.name}>
-                        {user.firstName} {user.lastName}
+                        {user.first_name} {user.last_name}
                     </div>
                     <div className={styles.title}>
                         {user.position ?
@@ -44,7 +47,7 @@ const InformationSection = ({ user }: Props) => {
                             </div>
                             :
                             <div className={styles.title}>
-                                {!user.company && user.school ?
+                                {!user.employer && user.school ?
                                     <div className={styles.title}>
                                         {user.school}
                                     </div>
@@ -55,9 +58,9 @@ const InformationSection = ({ user }: Props) => {
                         }
                     </div>
                     <div className={styles.title}>
-                        {user.company ?
+                        {user.employer ?
                             <div className={styles.title}>
-                                {user.company}
+                                {user.employer}
                             </div>
                             :
                             <div className={styles.title}>
@@ -113,7 +116,7 @@ const InformationSection = ({ user }: Props) => {
                 </div>
             </div>
             <div className={styles.buttonSection}>
-                <EditProfileModal user={user}/>
+                <EditProfileModal user={user} setCurrentUser={setCurrentUser} />
                 <button className={styles.button} onClick={handleLogout}>
                     Sign Out
                 </button>

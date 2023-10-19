@@ -1,14 +1,15 @@
-interface User {
-    id: string;
-    firstName: string;
-    middleName?: string;
-    lastName: string;
+export interface User {
+    id: number;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
     email: string;
-    position?: string;
-    company?: string;
-    school?: string;
-    major?: string;
-    phone?: string;
-    resume?: string;
+    position: string;
+    employer: string;
+    school: string;
+    major: string;
+    phone: string;
+    resume: string;
+    type_of_user: string;
     highestDegree?: string;
 }

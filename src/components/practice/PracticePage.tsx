@@ -13,7 +13,8 @@ import { Industry } from '@/utils/types/industry'
 import useRoles from '@/hooks/role/useRoles'
 import { Role } from '@/utils/types/role'
 import { QuestionSet } from '@/utils/types/question'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { addToUrl } from '@/utils/addToUrl'
 
 const PracticePage = () => {
     const { allIndustries } = useIndustries()
@@ -82,20 +83,6 @@ const PracticePage = () => {
     useEffect(() => {
         setRoleOptions(getRoleOptions(allRoles))
     }, [allRoles])
-
-    const addToUrl = (param: string, array: any[]) => {
-        let urlPart = ''
-        if (array.length > 0) {
-            urlPart += `&${param}=`
-            array.forEach((item, index) => {
-                urlPart += item;
-                if (index < array.length - 1) {
-                    urlPart += ','
-                }
-            })
-        }
-        return urlPart
-    }
 
     useEffect(() => {
         let addToUrlString = ''
