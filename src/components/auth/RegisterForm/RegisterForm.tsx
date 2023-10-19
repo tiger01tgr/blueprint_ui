@@ -31,6 +31,7 @@ interface Props {
 }
 
 const RegisterForm = ({ redirectToProfile }: Props) => {
+    console.log(redirectToProfile)
     const { LoginWithEmailPassword, RegisterWithEmailPassword } = useAuth()
     const router = useRouter()
     const [type, toggle] = useToggle(['register', 'login'])
@@ -62,6 +63,7 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
                 LoginWithEmailPassword(values.email, values.password)
                     .then((error) => {
                         if (error === null && redirectToProfile) {
+                            console.log('logged in')
                             router.push('/profile')
                         }
                     })
@@ -74,7 +76,10 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
             case 'register':
                 RegisterWithEmailPassword(values.email, values.password, values.firstname, values.lastname)
                     .then((error) => {
+                        console.log('registered')
+                        console.log(error)
                         if (error === null && redirectToProfile) {
+                            console.log('going to profile in')
                             router.push('/profile')
                         }
                     })
@@ -99,7 +104,10 @@ const RegisterForm = ({ redirectToProfile }: Props) => {
                 Welcome to bluprint!
             </Text> */}
 
-            <form onSubmit={form.onSubmit(onSubmit)}>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                onSubmit(form.values)
+            }}>
                 <Stack>
                     {type === 'register' && (
                         <Stack>
