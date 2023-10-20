@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { getPracticeSets, getInterviewQuestions, getPracticeSetsWithFilter } from './practiceApi'
 import { QuestionSet, QuestionSetAllData, QuestionSetWithQuestions } from '@/utils/types/question'
 

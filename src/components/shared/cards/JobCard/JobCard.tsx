@@ -3,26 +3,33 @@ import Link from 'next/link'
 import { BsFillLightningChargeFill } from 'react-icons/bs'
 import styles from './JobCard.module.css'
 import JobCardModal from './JobCardModal/JobCardModal'
+import { Job } from '@/utils/types/job'
 
-const JobCard = (props: any) => {
+interface Props {
+    job: Job;
+}
+
+const JobCard = ({ job }: Props) => {
     return (
         <div className={styles.liner}>
             <div className={styles.header}>
-                <Image alt='logo' src={props.employerLogo} width={80} height={80} />
+                <div className={styles.imageWrapper}>
+                    <Image alt='logo' src={job.logo} width={80} height={80} />
+                </div>
                 <div className={styles.tag}>
-                    {props.type}
+                    {job.jobType}
                 </div>
             </div>
             <div className={styles.info}>
                 <div className={styles.position}>
-                    {props.position}
+                    {job.name}
                 </div>
                 <div className={styles.company}>
-                    {props.employerName}
+                    {job.employerName}
                 </div>
             </div>
             <div className={styles.buttonSection}>
-                <Link href={`/practice/${props.interviewId}`}>
+                <Link href={`/practice/${job.questionSetId}`}>
                     <button className={styles.interviewButton}>
                         <BsFillLightningChargeFill />
                         <div>
@@ -30,7 +37,7 @@ const JobCard = (props: any) => {
                         </div>
                     </button>
                 </Link>
-                <JobCardModal {...props}/>
+                <JobCardModal description={job.description} />
             </div>
         </div>
     )
