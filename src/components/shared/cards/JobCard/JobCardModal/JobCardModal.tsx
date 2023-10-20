@@ -1,10 +1,13 @@
 'use client'
-
 import classes from './JobCardModal.module.css'
 import { useDisclosure } from '@mantine/hooks';
 import { Modal, Button } from '@mantine/core';
 
-const JobCardModal = (props: any) => {
+interface Props {
+    description: string;
+}
+
+const JobCardModal = ({ description }: Props) => {
     const [opened, { open, close }] = useDisclosure(false);
 
     return (
@@ -21,7 +24,7 @@ const JobCardModal = (props: any) => {
                         Description
                     </div>
                     <div className={classes.modalDescription}>
-                        {props.description}
+                        {description}
                     </div>
                 </div>
             </Modal>
