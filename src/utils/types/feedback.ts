@@ -1,4 +1,4 @@
-interface FeedbackSet {
+export interface FeedbackSet {
     id: string;
     feedback: Feedback[];
     type: string;
@@ -8,7 +8,7 @@ interface FeedbackSet {
     feedbackGivenTime: Date;
 }
 
-interface Feedback {
+export interface Feedback {
     questionText: string;
     response: string;
     feedbackText: string;

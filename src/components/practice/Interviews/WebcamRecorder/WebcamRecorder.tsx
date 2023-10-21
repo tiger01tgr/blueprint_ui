@@ -1,16 +1,29 @@
 import React, { useRef, useState, useCallback, useEffect } from "react"
 import Webcam from "react-webcam"
-import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { CountdownCircleTimer } from "react-countdown-circle-timer"
 import styles from './WebcamRecorder.module.css'
 import { Question } from '@/utils/types/question'
+import { Session } from "@/utils/types/session"
+import useSessions from "@/hooks/session/useSessions"
 
 interface WebcamRecorderProps {
     isLastQuestion: boolean;
     currentQuestion: Question;
     handleNextQuestion: any;
+    currentSession: Session | null;
+    token: string;
+    questionSetId: number;
 }
 
-const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }: WebcamRecorderProps) => {
+const WebcamRecorder = ({ 
+    currentQuestion,
+    isLastQuestion, 
+    handleNextQuestion, 
+    currentSession, 
+    token,
+    questionSetId
+}: WebcamRecorderProps) => {
+
     const webcamRef = useRef<any>(null)
     const mediaRecorderRef = useRef<any>(null)
     const [capturing, setCapturing] = useState(false)
@@ -19,6 +32,7 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
     const [started, setStarted] = useState<boolean>(false)
     const [key, setKey] = useState(0)
     const [secondsLeft, setSecondsLeft] = useState(100)
+    const { submitQuestion } = useSessions()
 
     useEffect(() => {
         setRemainingTime(parseInt(currentQuestion.timeLimit))
@@ -97,17 +111,10 @@ const WebcamRecorder = ({ currentQuestion, isLastQuestion, handleNextQuestion }:
             const blob = new Blob(recordedChunks, {
                 type: "video/webm"
             })
-            const url = URL.createObjectURL(blob)
-            console.log(url)
-            // upload to s3
-
-            // const a = document.createElement("a")
-            // document.body.appendChild(a)
-            // a.href = url
-            // console.log(a)
-            // a.download = "react-webcam-stream-capture.webm"
-            // a.click()
-            // window.URL.revokeObjectURL(url)
+            const video = new File([blob], "recordedVideo.webm", { type: "video/webm" })
+            if (currentSession) {
+                submitQuestion(token, questionSetId, currentSession.id, currentQuestion.id, video)
+            }
             setRecordedChunks([])
             handleNextQuestion()
         }

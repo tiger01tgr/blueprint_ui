@@ -18,6 +18,7 @@ export default function InterviewPage() {
   const [loggedIn, setLoggedIn] = useState(true)
   const { getQuestionSetWithQuestions } = usePractice()
   const { authObj, getBearerToken } = useAuth()
+  const [token, setToken] = useState<string>('')
 
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function InterviewPage() {
         setLoggedIn(false)
       } else {
         setLoggedIn(true)
+        setToken(token)
       }
       const questionSet = await getQuestionSetWithQuestions(id)
       if (questionSet) {
@@ -46,7 +48,7 @@ export default function InterviewPage() {
       <div className={styles.liner}>
         {loggedIn ? (
           width >= 1024 ? (
-            <InterviewSet questionSet={questionSet} />
+            <InterviewSet questionSet={questionSet} token={token} />
           ) : (
             <div className={styles.getOffMobile}>
               <Image alt='mcdonalds app' src={McDonalds} height={500} />

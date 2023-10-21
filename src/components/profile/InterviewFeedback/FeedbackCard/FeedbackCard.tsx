@@ -3,6 +3,7 @@ import styles from './FeedbackCard.module.css'
 import Image from 'next/image'
 import FeedbackCardModal from './FeedbackCardModal/FeedbackCardModal'
 import timeAgo from '@/utils/timeAgo'
+import { FeedbackSet } from '@/utils/types/feedback'
 
 interface Props {
     feedbackSet: FeedbackSet

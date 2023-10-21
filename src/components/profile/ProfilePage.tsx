@@ -6,6 +6,7 @@ import InterviewFeedback from './InterviewFeedback/InterviewFeedback'
 import { User } from '@/utils/types/user'
 import useUser from '@/hooks/user/useUser'
 import useAuth from '@/hooks/auth/useAuth'
+import { FeedbackSet } from '@/utils/types/feedback'
 
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
