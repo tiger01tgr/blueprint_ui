@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from './InterviewFeedback.module.css'
 import FeedbackCard from './FeedbackCard/FeedbackCard'
+import { FeedbackSet } from '@/utils/types/feedback'
 
 interface Props {
     feedbackSet: FeedbackSet[] | null

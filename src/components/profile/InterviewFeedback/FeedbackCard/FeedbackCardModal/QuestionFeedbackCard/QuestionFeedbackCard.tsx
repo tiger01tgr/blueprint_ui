@@ -1,4 +1,5 @@
 import styles from './QuestionFeedbackCard.module.css'
+import { Feedback } from '@/utils/types/feedback'
 
 interface Props {
     feedback: Feedback;

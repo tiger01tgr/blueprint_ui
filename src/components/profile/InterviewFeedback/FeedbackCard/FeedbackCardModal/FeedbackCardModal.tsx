@@ -4,6 +4,7 @@ import { useDisclosure } from '@mantine/hooks'
 import { Modal } from '@mantine/core'
 import styles from './FeedbackCardModal.module.css'
 import QuestionFeedbackCard from './QuestionFeedbackCard/QuestionFeedbackCard'
+import { FeedbackSet } from '@/utils/types/feedback'
 
 interface Props {
     feedbackSet: FeedbackSet;
