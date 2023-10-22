@@ -19,8 +19,14 @@ export const getCurrentSessionById = async (token: string, questionSetId: number
             'Authorization': 'Bearer ' + token,
         }
     })
-    if (response.statusText === "Not Found") {
-        return null
+    if (!response.ok) {
+        console.log(response)
+        if (response.statusText === "Not Found") {
+            console.log('Not found')
+            return null
+        }
+        console.log('Error occurred')
+        throw new Error('Error occurred')
     }
     return parseSession(await response.json())
 }
