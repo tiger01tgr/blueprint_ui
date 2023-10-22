@@ -28,9 +28,6 @@ export const getCurrentSessionById = async (token: string, questionSetId: number
         console.log('Error occurred')
         throw new Error('Error occurred')
     }
-    if (response.statusText === "Not Found") {
-        return null
-    }
     return parseSession(await response.json())
 }
 
