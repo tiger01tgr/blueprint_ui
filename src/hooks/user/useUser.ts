@@ -12,7 +12,6 @@ const useUser = () => {
 
     const updateProfile = async (token: string, first_name: string, last_name: string, position: string, employer: string, school: string, major: string, phone: string, resume: File | null, currentUser: User): Promise<null> => {
         if (first_name === currentUser.first_name && last_name === currentUser.last_name && position === currentUser.position && employer === currentUser.employer && school === currentUser.school && major === currentUser.major && phone === currentUser.phone && !resume) {
-            console.log(first_name)
             return null
         }
         await updateUserProfile(token, first_name, last_name, position, employer, school, major, phone, resume)

@@ -112,7 +112,6 @@ const WebcamRecorder = ({
                 type: "video/webm"
             })
             const video = new File([blob], "recordedVideo.webm", { type: "video/webm" })
-            console.log(currentSession)
             if (currentSession) {
                 submitQuestion(token, questionSetId, currentSession.id, currentQuestion.id, video)
             }
