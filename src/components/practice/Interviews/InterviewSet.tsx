@@ -46,7 +46,7 @@ function InterviewSet({ questionSet, token }: InterviewSetProps) {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1)
     } else {
-      window.location.href = '/practice/end'
+      location.href = '/practice/end'
     }
   }
 
