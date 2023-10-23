@@ -118,7 +118,7 @@ const WebcamRecorder = ({
             setRecordedChunks([])
             handleNextQuestion()
         }
-    }, [recordedChunks])
+    }, [recordedChunks, currentSession])
 
     return (
         <div className={styles.liner}>

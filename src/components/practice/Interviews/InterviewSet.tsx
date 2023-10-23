@@ -25,11 +25,11 @@ function InterviewSet({ questionSet, token }: InterviewSetProps) {
       if (!currentSession) {
         await createSession(token, questionSet.id)
         currentSession = await getSession(token, questionSet.id)
+        setCurrentSession(currentSession)
       } else {
         if (currentSession.currentQuestionId === 0) {
           setCurrentIndex(0)
         } else {
-          console.log(currentSession)
           setCurrentIndex(findIndex(questions, currentSession.lastAnsweredQuestionId + 1))
         }
         setCurrentSession(currentSession)
