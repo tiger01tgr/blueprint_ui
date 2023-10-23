@@ -22,13 +22,14 @@ const useSessions = () => {
         return null
     }
 
-    const submitQuestion = async (token: string, questionSetId: number, sessionId: number, questionId: number, video: File): Promise<null> => {
+    const submitQuestion = async (token: string, questionSetId: number, sessionId: number, questionId: number, video: File): Promise<number | null> => {
         if (!token || !questionSetId || !sessionId || !questionId || !video) { return null }
         await submitQuestionWithId(token, questionSetId, sessionId, questionId, video)
         .catch((error) => {
             console.log(error)
+            return 400
         })
-        return null
+        return 201
     }
 
     return {
