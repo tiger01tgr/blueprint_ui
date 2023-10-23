@@ -86,6 +86,10 @@
     justify-content: center;
 }
 
+.submitting {
+    color: var(--forestGreen);
+}
+
 .timerUp {
     color: var(--crimson);
 }

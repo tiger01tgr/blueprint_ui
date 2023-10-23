@@ -1,3 +1,4 @@
+'use client'
 import React, { useRef, useState, useCallback, useEffect } from "react"
 import Webcam from "react-webcam"
 import { CountdownCircleTimer } from "react-countdown-circle-timer"
@@ -5,6 +6,7 @@ import styles from './WebcamRecorder.module.css'
 import { Question } from '@/utils/types/question'
 import { Session } from "@/utils/types/session"
 import useSessions from "@/hooks/session/useSessions"
+import { Notification } from '@mantine/core'
 
 interface WebcamRecorderProps {
     isLastQuestion: boolean;
@@ -59,17 +61,25 @@ const WebcamRecorder = ({
                     Remaining Time
                 </div>
                 <div className={styles.timerText}>
-                    {remainingTime === 0 ? (
-                        <div className={styles.timerUp}>Time&apos;s up!</div>
+                    {isSubmitting ? (
+                        <div className={styles.submitting}>Submitting, hang tight!</div>
                     ) : (
-                        <div className={styles.timerText}>
-                            {minutes > 0 ? (
-                                <div>{minutes} {minutes === 1 ? 'minute' : 'minutes'}</div>
-                            ) : null}
-                            {seconds > 0 ? (
-                                <div>{seconds} {seconds === 1 ? 'second' : 'seconds'}</div>
-                            ) : null}
-                        </div>
+                        remainingTime === 0 ? (
+                            <div className={styles.timerUp}>Time&apos;s up!</div>
+                        ) : (
+                            <div className={styles.timerText}>
+                                {minutes > 0 ? (
+                                    <div>
+                                        {minutes} {minutes === 1 ? 'minute' : 'minutes'}
+                                    </div>
+                                ) : null}
+                                {seconds > 0 ? (
+                                    <div>
+                                        {seconds} {seconds === 1 ? 'second' : 'seconds'}
+                                    </div>
+                                ) : null}
+                            </div>
+                        )
                     )}
                 </div>
             </div>
