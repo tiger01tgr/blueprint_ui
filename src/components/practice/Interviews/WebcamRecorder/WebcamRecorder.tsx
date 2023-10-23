@@ -15,15 +15,14 @@ interface WebcamRecorderProps {
     questionSetId: number;
 }
 
-const WebcamRecorder = ({ 
+const WebcamRecorder = ({
     currentQuestion,
-    isLastQuestion, 
-    handleNextQuestion, 
-    currentSession, 
+    isLastQuestion,
+    handleNextQuestion,
+    currentSession,
     token,
     questionSetId
 }: WebcamRecorderProps) => {
-
     const webcamRef = useRef<any>(null)
     const mediaRecorderRef = useRef<any>(null)
     const [capturing, setCapturing] = useState(false)
@@ -33,6 +32,8 @@ const WebcamRecorder = ({
     const [key, setKey] = useState(0)
     const [secondsLeft, setSecondsLeft] = useState(100)
     const { submitQuestion } = useSessions()
+    const [isMP4, setIsMP4] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     useEffect(() => {
         setRemainingTime(parseInt(currentQuestion.timeLimit))
@@ -79,9 +80,25 @@ const WebcamRecorder = ({
         setCapturing(true)
         setStarted(true)
         setRecordedChunks([])
-        mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-            mimeType: "video/webm"
-        })
+        try {
+            mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+                mimeType: "video/webm"
+            })
+        }
+        catch (err1) {
+            try {
+                // Fallback for iOS
+                mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+                    mimeType: "video/mp4"
+                })
+                setIsMP4(true)
+            }
+            catch (err2) {
+                console.error({ err1 })
+                console.error({ err2 })
+            }
+        }
+
         mediaRecorderRef.current.addEventListener(
             "dataavailable",
             handleDataAvailable
@@ -103,20 +120,32 @@ const WebcamRecorder = ({
         setCapturing(false)
     }, [mediaRecorderRef, webcamRef, setCapturing])
 
-    const handleS3 = useCallback(() => {
+    const handleS3 = useCallback(async () => {
         mediaRecorderRef.current.stop()
         setCapturing(false)
         if (recordedChunks.length) {
-            // change this to send to s3
-            const blob = new Blob(recordedChunks, {
-                type: "video/webm"
-            })
-            const video = new File([blob], "recordedVideo.webm", { type: "video/webm" })
-            if (currentSession) {
-                submitQuestion(token, questionSetId, currentSession.id, currentQuestion.id, video)
+            let blob
+            let video
+            if (isMP4) {
+                blob = new Blob(recordedChunks, {
+                    type: "video/mp4"
+                })
+                video = new File([blob], "recordedVideo.mp4", { type: "video/mp4" })
+            } else {
+                blob = new Blob(recordedChunks, {
+                    type: "video/webm"
+                })
+                video = new File([blob], "recordedVideo.webm", { type: "video/webm" })
             }
-            setRecordedChunks([])
-            handleNextQuestion()
+            if (currentSession) {
+                setIsSubmitting(true)
+                const code = await submitQuestion(token, questionSetId, currentSession.id, currentQuestion.id, video)
+                if (code === 201) {
+                    setRecordedChunks([])
+                    handleNextQuestion()
+                }
+                setIsSubmitting(false)
+            }
         }
     }, [recordedChunks, currentSession])
 
@@ -156,7 +185,7 @@ const WebcamRecorder = ({
                         )
                     ) : null
                 )}
-                {recordedChunks.length > 0 && (
+                {(recordedChunks.length > 0 && !isSubmitting) && (
                     <button onClick={handleS3} className={styles.nextButton} disabled={capturing}>
                         {isLastQuestion ? 'Finish' : 'Next Question'}
                     </button>
