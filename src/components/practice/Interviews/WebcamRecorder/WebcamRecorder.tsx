@@ -1,4 +1,3 @@
-'use client'
 import React, { useRef, useState, useCallback, useEffect } from "react"
 import Webcam from "react-webcam"
 import { CountdownCircleTimer } from "react-countdown-circle-timer"
@@ -6,7 +5,6 @@ import styles from './WebcamRecorder.module.css'
 import { Question } from '@/utils/types/question'
 import { Session } from "@/utils/types/session"
 import useSessions from "@/hooks/session/useSessions"
-import { Notification } from '@mantine/core'
 
 interface WebcamRecorderProps {
     isLastQuestion: boolean;
