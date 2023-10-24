@@ -89,7 +89,7 @@
 
 .logosSlide {
     display: inline-block;
-    animation: 50s slide infinite linear;
+    animation: 75s slide infinite linear;
 
     @media (max-width: 540px) {
         animation: 35s slide infinite linear;
