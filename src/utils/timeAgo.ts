@@ -1,17 +1,6 @@
-const timeAgo = (time: any) => {
-
-    switch (typeof time) {
-        case 'number':
-            break
-        case 'string':
-            time = +new Date(time)
-            break
-        case 'object':
-            if (time.constructor === Date) time = time.getTime()
-            break
-        default:
-            time = +new Date()
-    }
+const timeAgo = (time: Date) => {
+    const utcTime = new Date(time.getTime() + time.getTimezoneOffset() * 60000)
+    const now = new Date()
 
     var time_formats: any[] = [
         [60, 'seconds', 1], // 60
@@ -31,30 +20,29 @@ const timeAgo = (time: any) => {
         [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
     ]
 
-    var seconds = (+new Date() - time) / 1000,
+    var seconds = (now.getTime() - utcTime.getTime()) / 1000,
         token = 'ago',
-        list_choice = 1
+        list_choice = 1;
 
     if (seconds == 0) {
-        return 'Just now'
+        return 'Just now';
     }
+
     if (seconds < 0) {
-        seconds = Math.abs(seconds)
-        token = 'from now'
-        list_choice = 2
+        seconds = Math.abs(seconds);
+        token = 'from now';
+        list_choice = 2;
     }
+
     var i = 0,
-        format
-    while (format = time_formats[i++])
+        format;
+    while ((format = time_formats[i++])) {
         if (seconds < format[0]) {
-            if (typeof format[2] == 'string')
-                return format[list_choice]
-            else
-                return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token
+            if (typeof format[2] == 'string') return format[list_choice];
+            else return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
         }
-    return time
-}
+    }
+    return time;
+};
 
-export default timeAgo
-
-var aDay = 24 * 60 * 60 * 1000
+export default timeAgo;
