@@ -16,7 +16,7 @@ const FeedbackCard = ({ feedbackSet }: Props) => {
                 <div className={styles.header}>
                     <Image alt='logo' src={feedbackSet.employerLogo} width={120} height={100} />
                     <div className={styles.tag}>
-                        {/* {feedbackSet.type} */}
+                        {feedbackSet.questionSetType}
                     </div>
                 </div>
                 <div className={styles.info}>

@@ -6,6 +6,7 @@ export interface FeedbackSet {
     questionSetName: string;
     employerLogo: string;
     employerName: string;
+    questionSetType: string;
     seen: boolean;
     createdAt: Date;
 }

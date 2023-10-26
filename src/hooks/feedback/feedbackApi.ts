@@ -6,6 +6,7 @@ const parseFeedbackSet = (feedbackSet: any): FeedbackSet => {
         id: feedbackSet.id,
         practiceSessionId: feedbackSet.practice_session_id,
         questionSetId: feedbackSet.question_set_id,
+        questionSetType: feedbackSet.question_set_type,
         userId: feedbackSet.user_id,
         questionSetName: feedbackSet.question_set_name,
         employerLogo: feedbackSet.employer_logo,
