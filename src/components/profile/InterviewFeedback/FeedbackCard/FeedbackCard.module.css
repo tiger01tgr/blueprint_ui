@@ -4,7 +4,7 @@
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;
-    height: 260px;
+    height: 280px;
     width: 300px;
     justify-content: space-between;
 }
@@ -32,7 +32,7 @@
 }
 
 .info {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -44,7 +44,7 @@
     line-height: 22px;
 }
 
-.position {
+.employer {
     font-size: 16px;
     font-weight: 400;
 }

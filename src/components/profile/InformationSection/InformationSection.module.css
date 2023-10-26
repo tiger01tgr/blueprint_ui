@@ -8,8 +8,16 @@
     padding: 30px;
     border-radius: 5px;
 
-    @media (min-width: 540px) {
-        height: 80vh;
+    @media (min-width: 760px) {
+        max-height: 60vh;
+    }
+
+    @media (min-width: 900px) {
+        max-height: 52vh;
+    }
+
+    @media (min-width: 1000px) {
+        max-height: none;
     }
 }
 

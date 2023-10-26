@@ -1,5 +1,6 @@
 import styles from './QuestionFeedbackCard.module.css'
 import { Feedback } from '@/utils/types/feedback'
+import { displayTime } from '@/utils/displayTime'
 
 interface Props {
     feedback: Feedback;
@@ -19,9 +20,15 @@ const QuestionFeedbackCard = ({ feedback, index, totalQuestions }: Props) => {
                 </div>
                 {feedback.questionText}
             </div>
+            <div className={styles.question}>
+                <div className={styles.label}>
+                    Time Limit:
+                </div>
+                {displayTime(feedback.timeLimit)}
+            </div>
             <div className={styles.video}>
                 <video controls width="640" height="360">
-                    <source src={feedback.response} type="video/mp4" />
+                    <source src={feedback.video} type="video/mp4" />
                 </video>
             </div>
             <div className={styles.feedback}>
