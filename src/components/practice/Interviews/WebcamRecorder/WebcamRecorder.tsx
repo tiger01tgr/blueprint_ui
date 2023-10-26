@@ -88,6 +88,9 @@ const WebcamRecorder = ({
         setCapturing(true)
         setStarted(true)
         setRecordedChunks([])
+        setRemainingTime(parseInt(currentQuestion.timeLimit))
+        setSecondsLeft(parseInt(currentQuestion.timeLimit))
+        setKey((prevKey) => prevKey + 1)
         try {
             mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
                 mimeType: "video/webm"
