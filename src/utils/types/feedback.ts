@@ -1,15 +1,22 @@
 export interface FeedbackSet {
-    id: string;
-    feedback: Feedback[];
-    type: string;
-    interviewSetName: string;
-    interviewPosition: string;
-    interviewEmployerLogo: string;
-    feedbackGivenTime: Date;
+    id: number;
+    practiceSessionId: number;
+    questionSetId: number;
+    userId: number;
+    questionSetName: string;
+    employerLogo: string;
+    employerName: string;
+    questionSetType: string;
+    seen: boolean;
+    createdAt: Date;
 }
 
 export interface Feedback {
-    questionText: string;
-    response: string;
+    id: number;
     feedbackText: string;
+    feedbackSetId: number;
+    questionId: number;
+    questionText: string;
+    timeLimit: number;
+    video: string;
 }

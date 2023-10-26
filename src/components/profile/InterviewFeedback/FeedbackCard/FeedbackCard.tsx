@@ -14,25 +14,25 @@ const FeedbackCard = ({ feedbackSet }: Props) => {
         <div className={styles.liner}>
             <div className={styles.topSection}>
                 <div className={styles.header}>
-                    <Image alt='logo' src={feedbackSet.interviewEmployerLogo} width={120} height={100} />
+                    <Image alt='logo' src={feedbackSet.employerLogo} width={120} height={100} />
                     <div className={styles.tag}>
-                        {feedbackSet.type}
+                        {feedbackSet.questionSetType}
                     </div>
                 </div>
                 <div className={styles.info}>
                     <div className={styles.setName}>
-                        {feedbackSet.interviewSetName}
+                        {feedbackSet.questionSetName}
                     </div>
-                    <div className={styles.position}>
-                        {feedbackSet.interviewPosition}
+                    <div className={styles.employer}>
+                        {feedbackSet.employerName}
                     </div>
                 </div>
             </div>
             <div className={styles.buttonSection}>
                 <div className={styles.time}>
-                    {timeAgo(feedbackSet.feedbackGivenTime)}
+                    {timeAgo(feedbackSet.createdAt)}
                 </div>
-                <FeedbackCardModal feedbackSet={feedbackSet} />
+                <FeedbackCardModal feedbackSet={feedbackSet}/>
             </div>
         </div>
     )

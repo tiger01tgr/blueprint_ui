@@ -6,13 +6,15 @@ import InterviewFeedback from './InterviewFeedback/InterviewFeedback'
 import { User } from '@/utils/types/user'
 import useUser from '@/hooks/user/useUser'
 import useAuth from '@/hooks/auth/useAuth'
+import useFeedback from '@/hooks/feedback/useFeedback'
 import { FeedbackSet } from '@/utils/types/feedback'
 
 const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState<User | null>(null)
-    const [userFeedback, setUserFeedback] = useState<FeedbackSet[] | null>(null)
+    const [userFeedback, setUserFeedback] = useState<FeedbackSet[]>([])
     const { getBearerToken, authLoading } = useAuth()
     const { getProfile } = useUser()
+    const { getAllFeedback } = useFeedback()
 
     useEffect(() => {
         async function getUserData() {
@@ -22,6 +24,10 @@ const ProfilePage = () => {
                 const user = await getProfile(token)
                 if (user) {
                     setCurrentUser(user)
+                }
+                const feedbackSet = await getAllFeedback(token)
+                if (feedbackSet) {
+                    setUserFeedback(feedbackSet)
                 }
             } else {
                 window.location.href='/register'
@@ -35,7 +41,7 @@ const ProfilePage = () => {
     ), [currentUser])
 
     const renderInterviewFeedback = useCallback(() => (
-        <InterviewFeedback feedbackSet={userFeedback} />
+        <InterviewFeedback feedbackSets={userFeedback} />
     ), [userFeedback])
 
     return (
