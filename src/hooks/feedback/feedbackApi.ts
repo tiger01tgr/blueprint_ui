@@ -27,9 +27,11 @@ export const getAllFeedbackForUser = async (token: string): Promise<FeedbackSet[
     if (!response.ok) throw new Error('Error occurred')
     const json = await response.json()
     const feedbackSets = [] as FeedbackSet[]
-    json.map((feedbackSet: any) => {
-        feedbackSets.push(parseFeedbackSet(feedbackSet))
-    })
+    if (json) {
+        json.map((feedbackSet: any) => {
+            feedbackSets.push(parseFeedbackSet(feedbackSet))
+        })
+    }
     return feedbackSets
 }
 
