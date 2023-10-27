@@ -28,55 +28,55 @@ const LogoSection = () => {
             <div className={styles.logos}>
                 <div className={styles.logosParent}>
                     <div className={styles.logosSlide}>
-                        <Image src={spacex} alt='spacex' className={styles.logo} />
-                        <Image src={shopify} alt="shopify" className={styles.logo} />
-                        <Image src={amd} alt="amd" className={styles.logo} />
-                        <Image src={nvidia} alt='nvidia' className={styles.logo} />
+                        <Image src={spacex} alt='spacex' className={styles.logo} loading="eager" />
+                        <Image src={shopify} alt="shopify" className={styles.logo} loading="eager"/>
+                        <Image src={amd} alt="amd" className={styles.logo} loading="eager"/>
+                        <Image src={nvidia} alt='nvidia' className={styles.logo} loading="eager"/>
                         {/* <Image src={bain} alt='bain' className={styles.logo} /> */}
-                        <Image src={coinbase} alt='coinbase' className={styles.logo} />
-                        <Image src={ms} alt='ms' className={styles.logo} />
-                        <Image src={google} alt='google' className={styles.logo} />
+                        <Image src={coinbase} alt='coinbase' className={styles.logo} loading="eager"/>
+                        <Image src={ms} alt='ms' className={styles.logo} loading="eager"/>
+                        <Image src={google} alt='google' className={styles.logo} loading="eager"/>
                         {/* <Image src={jpm} alt='jpm' className={styles.logo} /> */}
-                        <Image src={blackrock} alt="blackrock" className={styles.logo} />
-                        <Image src={paypal} alt="paypal" className={styles.logo} />
-                        <Image src={mckinsey} alt="mckinsey" className={styles.logo} />
-                        <Image src={stripe} alt="stripe" className={styles.logo} />
+                        <Image src={blackrock} alt="blackrock" className={styles.logo} loading="eager"/>
+                        <Image src={paypal} alt="paypal" className={styles.logo} loading="eager"/>
+                        <Image src={mckinsey} alt="mckinsey" className={styles.logo} loading="eager"/>
+                        <Image src={stripe} alt="stripe" className={styles.logo} loading="eager"/>
                         {/* <Image src={robinhood} alt="robinhood" className={styles.logo} /> */}
-                        <Image src={openai} alt="openai" className={styles.logo} />
+                        <Image src={openai} alt="openai" className={styles.logo} loading="eager"/>
                         {/* <Image src={wp} alt="wp" className={styles.logo} /> */}
-                        <Image src={lazard} alt="lazard" className={styles.logo} />
-                        <Image src={palantir} alt="palantir" className={styles.logo} />
+                        <Image src={lazard} alt="lazard" className={styles.logo} loading="eager"/>
+                        <Image src={palantir} alt="palantir" className={styles.logo} loading="eager"/>
                     </div>
                     <div className={styles.logosSlide}>
-                        <Image src={spacex} alt='spacex' className={styles.logo} />
-                        <Image src={shopify} alt="shopify" className={styles.logo} />
-                        <Image src={amd} alt="amd" className={styles.logo} />
-                         <Image src={nvidia} alt='nvidia' className={styles.logo} />
+                    <Image src={spacex} alt='spacex' className={styles.logo} loading="eager" />
+                        <Image src={shopify} alt="shopify" className={styles.logo} loading="eager"/>
+                        <Image src={amd} alt="amd" className={styles.logo} loading="eager"/>
+                        <Image src={nvidia} alt='nvidia' className={styles.logo} loading="eager"/>
                         {/* <Image src={bain} alt='bain' className={styles.logo} /> */}
-                        <Image src={coinbase} alt='coinbase' className={styles.logo} />
-                        <Image src={ms} alt='ms' className={styles.logo} />
-                        <Image src={google} alt='google' className={styles.logo} />
+                        <Image src={coinbase} alt='coinbase' className={styles.logo} loading="eager"/>
+                        <Image src={ms} alt='ms' className={styles.logo} loading="eager"/>
+                        <Image src={google} alt='google' className={styles.logo} loading="eager"/>
                         {/* <Image src={jpm} alt='jpm' className={styles.logo} /> */}
-                        <Image src={blackrock} alt="blackrock" className={styles.logo} />
-                        <Image src={paypal} alt="paypal" className={styles.logo} />
-                        <Image src={mckinsey} alt="mckinsey" className={styles.logo} />
-                        <Image src={stripe} alt="stripe" className={styles.logo} />
+                        <Image src={blackrock} alt="blackrock" className={styles.logo} loading="eager"/>
+                        <Image src={paypal} alt="paypal" className={styles.logo} loading="eager"/>
+                        <Image src={mckinsey} alt="mckinsey" className={styles.logo} loading="eager"/>
+                        <Image src={stripe} alt="stripe" className={styles.logo} loading="eager"/>
                         {/* <Image src={robinhood} alt="robinhood" className={styles.logo} /> */}
-                        <Image src={openai} alt="openai" className={styles.logo} />
+                        <Image src={openai} alt="openai" className={styles.logo} loading="eager"/>
                         {/* <Image src={wp} alt="wp" className={styles.logo} /> */}
-                        <Image src={lazard} alt="lazard" className={styles.logo} />
-                        <Image src={palantir} alt="palantir" className={styles.logo} />
+                        <Image src={lazard} alt="lazard" className={styles.logo} loading="eager"/>
+                        <Image src={palantir} alt="palantir" className={styles.logo} loading="eager"/>
                     </div>
                 </div>
             </div>
-            <div className={styles.gallery}>
-                <Image src={google} alt="google" className={styles.staticLogo} />
-                <Image src={lazard} alt="lazard" className={styles.staticLogo} />
-                <Image src={amd} alt="amd" className={styles.staticLogo} />
-                <Image src={openai} alt="openai" className={styles.staticLogo} />
-                <Image src={mckinsey} alt="mckinsey" className={styles.staticLogo} />
-                <Image src={spacex} alt='spacex' className={styles.staticLogo} />
-            </div>
+            {/* <div className={styles.gallery}>
+                <Image src={google} alt="google" className={styles.staticLogo} loading="eager"/>
+                <Image src={lazard} alt="lazard" className={styles.staticLogo} loading="eager"/>
+                <Image src={amd} alt="amd" className={styles.staticLogo} loading="eager"/>
+                <Image src={openai} alt="openai" className={styles.staticLogo} loading="eager"/>
+                <Image src={mckinsey} alt="mckinsey" className={styles.staticLogo} loading="eager"/>
+                <Image src={spacex} alt='spacex' className={styles.staticLogo} loading="eager"/>
+            </div> */}
         </div>
     )
 }

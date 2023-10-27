@@ -10,7 +10,7 @@
     height: 200px;
     width: 100vw;
 
-    @media (max-width: 540px) {
+    @media (max-width: 33.813em) {
         width: 100vw;
         margin-top: 50px;
         margin-bottom: 50px;
@@ -26,7 +26,7 @@
     font-weight: 600;
     text-align: center;
 
-    @media (max-width: 540px) {
+    @media (max-width: 33.813em) {
         width: 90%;
     }
 }
@@ -38,13 +38,13 @@
     position: relative;
     align-items: space-evenly;
 
-    @media (max-width: 540px) {
+    @media (max-width: 33.813em) {
         height: 300px;
     }
 
-    @media (max-width: 540px) {
+    /* @media (max-width: 33.813em) {
         display: none;
-    }
+    } */
 }
 
 .logo {
@@ -52,7 +52,7 @@
     width: 120px;
     margin-right: 125px;
 
-    @media (max-width: 540px) {
+    @media (max-width: 33.813em) {
         width: 80px;
         margin-right: 85px;
     }
@@ -91,12 +91,12 @@
     display: inline-block;
     animation: 75s slide infinite linear;
 
-    @media (max-width: 540px) {
-        animation: 35s slide infinite linear;
+    @media (max-width: 33.813em) {
+        animation: 55s slide infinite linear;
     }
 }
 
-.gallery {
+/* .gallery {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -104,11 +104,11 @@
     align-items: center;
     gap: 20px;
 
-    @media (min-width: 550px) {
+    @media (min-width: 33.813em) {
         display: none;
     }
 }
 
 .staticLogo {
     width: 100px;
-}
+} */
