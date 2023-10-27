@@ -3,11 +3,11 @@
     background: var(--white);
     width: 200px;
 
-    @media (max-width: 540px) {
+    @media (max-width: 33.75em) {
         width: 160px;
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 24.375em) {
         width: 150px;
     }
 }
