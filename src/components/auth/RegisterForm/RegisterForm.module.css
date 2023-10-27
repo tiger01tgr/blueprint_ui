@@ -1,6 +1,6 @@
 .paper {
     width: 450px;
-    @media (max-width: 540px) {
+    @media (max-width: 33.75em) {
         width: 350px;
     }
 }

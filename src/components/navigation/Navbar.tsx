@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Logo from '../../../public/logo.png'
 import NavMenu from './NavMenu/NavMenu'
 import useAuth from '@/hooks/auth/useAuth'
-import { Button } from '@mantine/core'
 
 const links = [
     { name: 'Practice', path: '/practice' },
